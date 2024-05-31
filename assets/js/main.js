@@ -123,7 +123,7 @@
 })(jQuery);
 
 // Text to be typed
-const textToType = "Data Scientist | Machine Learning | Cloud Analytics";
+const textToType = "Data Science | Machine Learning | Cloud Analytics";
 
 // Typing speed in milliseconds (adjust as needed)
 const typingSpeed = 100;
