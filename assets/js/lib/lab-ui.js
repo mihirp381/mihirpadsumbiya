@@ -54,6 +54,26 @@ export function sampleHook(hooks, count) {
   return n >= 1 && n <= count ? n - 1 : -1;
 }
 
+const at = (v) => `left:${(v * 100).toFixed(2)}%`;
+export const edgeOf = (v) => (v < 0.12 ? "l" : v > 0.88 ? "r" : "");
+
+export function place(el, v) {
+  el.style.left = `${(v * 100).toFixed(2)}%`;
+  el.dataset.edge = edgeOf(v);
+}
+
+export function scaleHTML(marks = []) {
+  const tick = (i) => `<i class="scale-t${i % 5 ? "" : " scale-t-major"}" style="${at(i / 10)}"></i>`;
+  const ref = (r) => (r ? ` data-ref="${r}"` : "");
+  return `<div class="scale" aria-hidden="true">` +
+    `<div class="scale-head"><span class="scale-ptr" data-ref="fill"><span class="scale-v" data-ref="fill-v"></span></span></div>` +
+    `<div class="scale-rule">${Array.from({ length: 11 }, (_, i) => tick(i)).join("")}` +
+    marks.map((m) => `<i class="scale-m ${m.cls}"${ref(m.tick)} style="${at(m.at ?? 0)}"></i>`).join("") + `</div>` +
+    `<div class="scale-row">${[0, 0.5, 1].map((v) => `<span style="${at(v)}">${v}</span>`).join("")}</div>` +
+    marks.map((m) => `<div class="scale-row"><span class="scale-lbl"${ref(m.lbl)} data-edge="${edgeOf(m.at ?? 0)}" style="${at(m.at ?? 0)}">${esc(m.label ?? "")}</span></div>`).join("") +
+    `</div>`;
+}
+
 export function divergingRows(rows, max) {
   const w = (v) => `${(Math.min(Math.abs(v) / (max || 1), 1) * 38).toFixed(2)}%`;
   const bar = (v, cls, label) =>

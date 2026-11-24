@@ -1,6 +1,6 @@
 import { predictRaw } from "../lib/gbm.js";
 import { syncRange } from "../site.js";
-import { chart, scaleLog, scaleLinear, ticks, niceMax, stepPath, axisX, gridY, text, line } from "../lib/plot.js";
+import { chart, scaleLog, scaleLinear, ticks, niceMax, stepPath, axisX, axisY, gridY, text, line } from "../lib/plot.js";
 import { loadJSON, refs, scheduler, sliderHTML, chipsHTML, pressChip, sampleHook, divergingRows } from "../lib/lab-ui.js";
 import { fmt, signed, clamp, concreteDerived, outsideTraining, sensitivity, ageSweep, defaultMix, AGE_POS, posToAge, ageToPos } from "../lib/demo-math.js";
 
@@ -64,22 +64,23 @@ export async function mount(fig, hooks = {}) {
   const s = { x: F.map((ft) => ft.p50), sample: -1, edited: false, sweep: null, pred: 0 };
   s.x[AGE] = 28;
 
-  const ageChart = chart(r["age-plot"], 210, (w, h) => {
-    const ml = 36, mr = 16, mt = 20, mb = 26;
+  const ageChart = chart(r["age-plot"], 230, (w, h) => {
+    const ml = 40, mr = 16, mt = 26, mb = 42;
     const sample = s.sample >= 0 && !s.edited ? samples[s.sample] : null;
     const top = niceMax(Math.max(...s.sweep, sample ? sample.y : 0, 10) * 1.04, 4);
     const x = scaleLog(1, ageMax, ml, w - mr);
     const y = scaleLinear(0, top, h - mb, mt);
     const days = Array.from(s.sweep, (_, i) => x(i + 1));
     const age = s.x[AGE], cx = x(age), cy = y(s.pred);
-    let out = gridY(y, ticks(0, top, 4), ml, w - mr, (v) => fmt(v)) + text(ml - 6, mt - 9, "MPa", "tk", "end");
-    out += line(x(28), mt - 4, x(28), h - mb, "guide") + text(x(28) + 4, mt - 9, "28 d", "tk");
-    out += axisX(x, AGE_TICKS, h - mb);
-    out += `<path class="ln ln-a" d="${stepPath(days, Array.from(s.sweep, y))}"/>`;
-    out += `<circle class="pt pt-a" cx="${cx}" cy="${cy}" r="4"/>` + text(cx - 7, cy - 7, fmt(s.pred, 1), "val", "end");
+    const yt = ticks(0, top, 4);
+    let out = gridY(y, yt.slice(1), ml + 1, w - mr) + axisY(y, yt, ml, (v) => fmt(v)) + text(ml - 8, mt - 12, "MPa", "tk", "end");
+    out += line(x(28), mt - 6, x(28), h - mb, "guide") + text(x(28) + 5, mt - 12, "28 days", "tk");
+    out += axisX(x, AGE_TICKS, h - mb) + text(w - mr, h - 3, "AGE, DAYS", "ttl", "end");
+    out += `<path class="ln" d="${stepPath(days, Array.from(s.sweep, y))}"/>`;
+    out += `<circle class="pt" cx="${cx}" cy="${cy}" r="4"/>` + text(cx - 8, cy - 8, fmt(s.pred, 1), "val", "end");
     if (sample) {
       const lx = x(sample.x[AGE]), ly = y(sample.y), right = lx < w - mr - 30;
-      out += `<circle class="pt pt-b" cx="${lx}" cy="${ly}" r="4"/>` + text(lx + (right ? 8 : -8), ly + 4, "lab", "val val-b", right ? "start" : "end");
+      out += `<rect class="pt pt-ox" x="${lx - 4}" y="${ly - 4}" width="8" height="8"/>` + text(lx + (right ? 9 : -9), ly + 4, "lab", "val val-b", right ? "start" : "end");
     }
     return out;
   });
@@ -169,7 +170,7 @@ export async function mount(fig, hooks = {}) {
 
   const hp = meta.hyperparameters, mt = meta.metrics;
   fig.querySelector(".fig-cap").innerHTML =
-    `<span class="fig-num">Fig. 1</span>Gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) trained on ${fmt(meta.split.train)} lab mixes and tested once on ${fmt(meta.split.test)} held-out mixes: ` +
+    `<span class="fig-num">Figure 2.</span>Gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) trained on ${fmt(meta.split.train)} lab mixes and tested once on ${fmt(meta.split.test)} held-out mixes: ` +
     `R² ${fmt(mt.test_r2, 2)}, RMSE ${fmt(mt.test_rmse, 1)} MPa. In my manuscript the best of thirty models, a neural network, reached R² 0.93 and RMSE 4.9 MPa on its own split. ` +
     `Data: Yeh (1998), UCI Machine Learning Repository, CC BY 4.0. Reproduce with <a href="${REPO}" target="_blank" rel="noopener">tools/train_concrete.py</a>.`;
 

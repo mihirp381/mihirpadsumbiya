@@ -1,0 +1,62 @@
+title: Mihir Padsumbiya
+tagline: Data Scientist
+description: >-
+  Mihir Padsumbiya, data scientist at Republic Services: forecasting, causal-ML
+  and agentic-AI systems that field operations run on, with models you can run
+  in the browser.
+author: Mihir Padsumbiya
+lang: en
+theme: null
+url: https://mihirp381.github.io
+baseurl: /mihirpadsumbiya
+timezone: America/Chicago
+
+social:
+  name: Mihir Padsumbiya
+  links:
+    - https://www.linkedin.com/in/mihir-padsumbiya/
+    - https://github.com/mihirp381
+
+permalink: /notes/:year/:month/:title/
+excerpt_separator: "<!--more-->"
+future: false
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+  footnote_backlink: "&#8617;&#xFE0E;"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: notes/feed.xml
+  title: Notes by Mihir Padsumbiya
+
+exclude:
+  - tools
+  - README.md
+  - .gitignore
+  - _preview
+  - .jekyll-cache
+  - Gemfile
+  - Gemfile.lock
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      section: notes
+      folio: 5
+  - scope:
+      path: lab
+    values:
+      section: lab
+      folio: 2

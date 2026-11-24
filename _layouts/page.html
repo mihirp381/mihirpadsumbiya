@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<header class="titleblock">
+  {%- if page.label %}
+  <p class="label titleblock-label">{{ page.label }}</p>
+  {%- endif %}
+  <h1 class="title">{% include title.html %}</h1>
+  {%- if page.standfirst %}
+  <p class="standfirst">{{ page.standfirst }}</p>
+  {%- endif %}
+</header>
+{{ content }}

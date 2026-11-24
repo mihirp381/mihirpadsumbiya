@@ -1,0 +1,17 @@
+- school: The University of Texas at Dallas
+  degree: M.S. Business Analytics & Artificial Intelligence (Data Science)
+  dates: Aug 2022 – May 2024
+  details:
+    - label: GPA
+      value: 3.94 / 4.0, Highest Distinction
+    - label: Award
+      value: Dean’s Excellence Scholar
+    - label: Certified
+      value: Applied Machine Learning, Healthcare Analytics
+
+- school: Nirma University
+  degree: B.Tech. Civil Engineering, minor in Finance
+  dates: Aug 2017 – May 2021
+  details:
+    - label: GPA
+      value: 3.5 / 4.0, First Class

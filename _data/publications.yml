@@ -1,0 +1,29 @@
+- title: Automatic Crack Detection Using Convolutional Neural Network
+  authors: M. Padsumbiya, V. Brahmbhatt, S. P. Thakkar
+  venue: Journal of Soft Computing in Civil Engineering
+  issue: 6(3), 2022
+  status: Peer-reviewed
+  text: A four-layer CNN that classifies 128×128 photos of concrete as cracked or intact, reaching 97.8% accuracy on 4,000 held-out images.
+  links:
+    - label: DOI 10.22115/SCCE.2022.325596.1397
+      url: https://doi.org/10.22115/scce.2022.325596.1397
+    - label: "Run it: Figure 3"
+      url: /lab/crack-detection/
+    - label: PDF and repo
+      url: https://github.com/mihirp381/Automatic-crack-detection-using-CNN-
+
+- title: Compressive Strength Predictions for Concrete Using Various Machine Learning Techniques
+  byline: Manuscript, with V. Brahmbhatt and S. P. Thakkar, Nirma University, 2021
+  text: Thirty model variants compared on 1,030 lab mixes, from linear regression to stacked ensembles and neural networks; the best network reached R² 0.93.
+  links:
+    - label: "Run it: Figure 2"
+      url: /lab/concrete-strength/
+    - label: Manuscript
+      url: https://github.com/mihirp381/Compressive-strength-prediction-for-concrete-using-various-ML-techniques
+
+- title: "Stock Market Prediction Using NLP Classification and LSTM Model: A Comparative Approach"
+  byline: Manuscript, with T. Upadhyay, Nirma University, 2021
+  text: News-headline classifiers compared against an LSTM that combines technical indicators with 30 days of headline sentiment.
+  links:
+    - label: Manuscript
+      url: https://github.com/mihirp381/Stock-market-prediction-using-NLP-classification-and-LSTM-model-A-comparitive-approach

@@ -1,0 +1,54 @@
+- org: Republic Services
+  role: Data Scientist, Operations
+  place: Phoenix, AZ (remote)
+  dates: Oct 2024 – Present
+  points:
+    - tag: Forecasting platform
+      text: Architected and led the enterprise rollout of an end-to-end workforce forecasting platform (data pipelines, predictive models and a secure Streamlit UI with RBAC) across 330 regional divisions, driving **$8M–$10M in annual savings** by optimizing driver headcount and preventing contract loss.
+    - tag: Agentic AI
+      text: Engineered a proprietary agentic AI system (a custom OCR engine, classification models and an autonomous agentic loop) to automate safety-critical hazardous-waste routing, processing 100K+ lab reports to drive **about $20M in labor savings** and improve contaminant detection accuracy.
+    - tag: Causal ML
+      text: Used Causal Forests to quantify the heterogeneous treatment effect of missed pickups and service delays on commercial client churn, enabling targeted retention interventions that preserved **$1.2M in annualized revenue**.
+    - tag: Time series
+      text: Pioneered and deployed the company’s first explainable, multivariate time-series volume forecasting model, cutting daily error **from 16% to 7% MAPE** and establishing a core predictive engine for dynamic pricing, equipment procurement and sales.
+    - tag: Experimentation
+      text: Designed and ran A/B tests and a lightweight Power BI pilot-monitoring dashboard to evaluate a new routing algorithm projected to drive **$40M–$50M in savings**; A/B tested exception-logging workflows in the driver companion app, cutting driver data-entry time **by 20%**.
+    - tag: Data products
+      text: Partnered with finance, business operations and sales to architect multi-consumer Snowflake data products, engineering 5+ new KPIs including sequence adherence; launched a Snowflake-hosted recommendation web app that helped mitigate union-strike impact and protect **$4M in at-risk revenue**.
+    - tag: Mentoring
+      text: Helped onboard and mentor **6 new team members** over two years.
+
+- org: Lantern Pharma
+  ticker: "NASDAQ: LTRN"
+  role: Data Scientist, NLP & Generative AI
+  place: Dallas, TX
+  dates: Jan 2024 – Oct 2024
+  points:
+    - text: Architected an end-to-end NLP and LLM pipeline (PyTorch, spaCy, fine-tuned GPT-3.5) to process 200&nbsp;GB+ of healthcare literature, automating semantic search and feature extraction to engineer 10+ high-value datasets that raised an in-house model’s accuracy **from 80% to 97%**.
+    - text: Built and tested binary classifiers on protein and small-molecule interaction data, reaching **98.3% accuracy** in predicting compound permeability.
+    - text: Cut data discovery time for researchers by **50–80%**.
+
+- org: The University of Texas at Dallas
+  role: Teaching Assistant, Statistics
+  place: Richardson, TX
+  dates: Aug 2023 – Dec 2023
+  points:
+    - text: "Taught graduate-level Advanced Statistics for Data Science (BUAN&nbsp;6359) and Managerial Methods in Decision Making Under Uncertainty (OPRE&nbsp;3360): regression, hypothesis testing and interpretation of statistical models in R and SAS."
+
+- org: Energybox
+  role: Data Analyst Intern
+  place: Nashville, TN
+  dates: May 2023 – Aug 2023
+  points:
+    - text: Designed an anomaly detection system for energy-usage data with Python and AWS SageMaker, improving the baseline model’s F1-score **from 85% to 95%**.
+
+- org: Conagra Brands
+  role: Student Consultant, Data Analysis
+  dates: Jan 2023 – May 2023
+  points:
+    - text: Found pricing gaps, thresholds and cross-category opportunities in sales data using SQLite, Python, Alteryx, SAS and Tableau.
+
+- org: Atharva System
+  role: Data Analyst Intern
+  place: Ahmedabad, India
+  dates: May 2021 – Oct 2021

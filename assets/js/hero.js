@@ -9,16 +9,12 @@ const RATE = 22;
 const RAMP = 400;
 const MAX_STEPS_PER_FRAME = 40;
 const DRAW_EVERY_MS = 33;
+const PITCH = 7;
+const RMAX = 0.29 * PITCH;
 
 const fig = document.getElementById("fig-0");
 const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
-const hexRgb = (h) => {
-  h = h.trim().replace("#", "");
-  if (h.length === 3) h = [...h].map((c) => c + c).join("");
-  const n = parseInt(h, 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-};
 const sx = (x, w) => ((x - EXT[0]) / (EXT[1] - EXT[0])) * w;
 const sy = (y, h) => ((EXT[3] - y) / (EXT[3] - EXT[2])) * h;
 
@@ -36,11 +32,7 @@ function init() {
   const classButtons = [...fig.querySelectorAll("[data-class]")];
 
   const grid = new Float32Array(COLS * ROWS);
-  const off = document.createElement("canvas");
-  off.width = COLS;
-  off.height = ROWS;
-  const offCtx = off.getContext("2d");
-  const img = offCtx.createImageData(COLS, ROWS);
+  let screen = null;
 
   const s = {
     name: "spiral", seed: 8, X: [], y: [], net: null,
@@ -58,7 +50,7 @@ function init() {
         `<span class="tick tick-y" aria-hidden="true" style="top:${(sy(v, 100)).toFixed(3)}%">${label}</span>`
     );
   }
-  plot.insertAdjacentHTML("beforeend", '<span class="axis-name axis-x" aria-hidden="true">x₁</span><span class="axis-name axis-y" aria-hidden="true">x₂</span>');
+  plot.insertAdjacentHTML("beforeend", '<span class="axis-name axis-x" aria-hidden="true">x<sub>1</sub></span><span class="axis-name axis-y" aria-hidden="true">x<sub>2</sub></span>');
 
   const probe = createNet();
   fig.querySelector("[data-hero-cap]").textContent =
@@ -68,30 +60,53 @@ function init() {
   function readColors() {
     const cs = getComputedStyle(document.documentElement);
     const v = (n) => cs.getPropertyValue(n).trim();
-    colors = {
-      bg: v("--bg-sunken"), a: v("--a"), b: v("--b"), ink: v("--ink"), tick: v("--ink-3"),
-      light: document.documentElement.dataset.theme === "light",
-    };
-    colors.rgb = { bg: hexRgb(colors.bg), a: hexRgb(colors.a), b: hexRgb(colors.b) };
+    colors = { paper: v("--paper"), blue: v("--blue"), ox: v("--ox"), ink: v("--ink") };
   }
 
-  function paintField() {
-    predictGrid(s.net, COLS, ROWS, grid, EXT);
-    const { bg, a, b } = colors.rgb;
-    const k = colors.light ? 0.22 : 0.2;
-    const d = img.data;
-    for (let i = 0; i < grid.length; i++) {
-      const p = grid[i];
-      const c = Math.abs(2 * p - 1);
-      const w = k * c * c * (3 - 2 * c);
-      const col = p < 0.5 ? a : b;
-      const j = 4 * i;
-      d[j] = bg[0] + (col[0] - bg[0]) * w;
-      d[j + 1] = bg[1] + (col[1] - bg[1]) * w;
-      d[j + 2] = bg[2] + (col[2] - bg[2]) * w;
-      d[j + 3] = 255;
+  function buildScreen(W, H, dpr) {
+    const a = (PITCH * dpr) / Math.SQRT2;
+    const xs = [], ys = [];
+    for (let j = 0, y = a / 2; y < H + a; j++, y += a) {
+      for (let x = (j % 2) * a; x < W + a; x += 2 * a) {
+        xs.push(x);
+        ys.push(y);
+      }
     }
-    offCtx.putImageData(img, 0, 0);
+    const n = xs.length;
+    const idx = new Int32Array(n), fx = new Float32Array(n), fy = new Float32Array(n);
+    for (let k = 0; k < n; k++) {
+      const gx = Math.min(Math.max((xs[k] / W) * (COLS - 1), 0), COLS - 1.001);
+      const gy = Math.min(Math.max((ys[k] / H) * (ROWS - 1), 0), ROWS - 1.001);
+      const c = Math.floor(gx), r = Math.floor(gy);
+      idx[k] = r * COLS + c;
+      fx[k] = gx - c;
+      fy[k] = gy - r;
+    }
+    screen = { W, H, dpr, n, x: Float32Array.from(xs), y: Float32Array.from(ys), idx, fx, fy };
+  }
+
+  function paintScreen() {
+    predictGrid(s.net, COLS, ROWS, grid, EXT);
+    const { n, x, y, idx, fx, fy, dpr } = screen;
+    const rmax = RMAX * dpr, rmin = 0.3 * dpr;
+    const lo = new Path2D(), hi = new Path2D();
+    for (let k = 0; k < n; k++) {
+      const i = idx[k], u = fx[k], v = fy[k];
+      const p = (grid[i] * (1 - u) + grid[i + 1] * u) * (1 - v) + (grid[i + COLS] * (1 - u) + grid[i + COLS + 1] * u) * v;
+      const r = rmax * Math.sqrt(Math.abs(2 * p - 1));
+      if (r < rmin) continue;
+      if (p > 0.5) {
+        const h = r * 0.886;
+        hi.rect(x[k] - h, y[k] - h, 2 * h, 2 * h);
+      } else {
+        lo.moveTo(x[k] + r, y[k]);
+        lo.arc(x[k], y[k], r, 0, 2 * Math.PI);
+      }
+    }
+    ctx.fillStyle = colors.blue;
+    ctx.fill(lo);
+    ctx.fillStyle = colors.ox;
+    ctx.fill(hi);
   }
 
   function contour(cw, ch) {
@@ -134,30 +149,37 @@ function init() {
 
   function points(dpr) {
     const W = canvas.width, H = canvas.height;
-    const rad = (W / dpr < 420 ? 3 : 3.6) * dpr;
+    const rad = (W / dpr < 420 ? 3.7 : 4.5) * dpr;
+    const half = rad * 0.89;
     const groups = [[], [], [], []];
     for (let i = 0; i < s.y.length; i++) {
       const x = s.X[2 * i], y = s.X[2 * i + 1], t = s.y[i];
       const wrong = predict(s.net, x, y) > 0.5 !== (t === 1);
       groups[t + 2 * wrong].push(sx(x, W), sy(y, H));
     }
-    const path = (g) => {
+    const path = (g, square) => {
       ctx.beginPath();
       for (let i = 0; i < g.length; i += 2) {
-        ctx.moveTo(g[i] + rad, g[i + 1]);
-        ctx.arc(g[i], g[i + 1], rad, 0, 2 * Math.PI);
+        if (square) ctx.rect(g[i] - half, g[i + 1] - half, 2 * half, 2 * half);
+        else {
+          ctx.moveTo(g[i] + rad, g[i + 1]);
+          ctx.arc(g[i], g[i + 1], rad, 0, 2 * Math.PI);
+        }
       }
     };
+    ctx.lineJoin = "miter";
     for (const t of [0, 1]) {
-      const col = t ? colors.b : colors.a;
-      path(groups[t]);
-      ctx.lineWidth = 2.4 * dpr;
-      ctx.strokeStyle = colors.bg;
+      const col = t ? colors.ox : colors.blue;
+      path(groups[t], t === 1);
+      ctx.lineWidth = 7 * dpr;
+      ctx.strokeStyle = colors.paper;
       ctx.stroke();
       ctx.fillStyle = col;
       ctx.fill();
-      path(groups[t + 2]);
-      ctx.fillStyle = colors.bg;
+      path(groups[t + 2], t === 1);
+      ctx.lineWidth = 8.5 * dpr;
+      ctx.stroke();
+      ctx.fillStyle = colors.paper;
       ctx.fill();
       ctx.lineWidth = 1.5 * dpr;
       ctx.strokeStyle = col;
@@ -170,26 +192,12 @@ function init() {
     if (!W || !H || !s.net) return;
     const dpr = W / Math.max(1, canvas.clientWidth);
     s.lastDraw = performance.now();
-    paintField();
+    if (!screen || screen.W !== W || screen.H !== H) buildScreen(W, H, dpr);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = "high";
+    ctx.clearRect(0, 0, W, H);
+    paintScreen();
     const cw = W / (COLS - 1), ch = H / (ROWS - 1);
-    ctx.drawImage(off, -cw / 2, -ch / 2, cw * COLS, ch * ROWS);
-
-    ctx.strokeStyle = colors.tick;
-    ctx.lineWidth = dpr;
-    ctx.beginPath();
-    for (const v of [-1, 0, 1]) {
-      const x = Math.round(sx(v, W)) + 0.5, y = Math.round(sy(v, H)) + 0.5;
-      ctx.moveTo(x, H);
-      ctx.lineTo(x, H - 5 * dpr);
-      ctx.moveTo(0, y);
-      ctx.lineTo(5 * dpr, y);
-    }
-    ctx.stroke();
-
-    ctx.lineWidth = 1.5 * dpr;
+    ctx.lineWidth = 1.25 * dpr;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.strokeStyle = colors.ink;
@@ -225,8 +233,8 @@ function init() {
     const acc = Number.isFinite(s.acc) ? `, training accuracy ${(s.acc * 100).toFixed(1)}%` : "";
     canvas.setAttribute(
       "aria-label",
-      `Scatter plot of the ${s.name} dataset: ${s.y.length} points in two classes, teal for class 0 and amber for class 1, ` +
-        `shaded by the network's predicted class with its decision boundary drawn as a line. Status ${st}${acc}.`
+      `Scatter plot of the ${s.name} dataset: ${s.y.length} points in two classes, blue circles for class 0 and red squares for class 1, ` +
+        `over a dot screen of the network's predicted class with its decision boundary drawn as a line. Status ${st}${acc}.`
     );
   }
 

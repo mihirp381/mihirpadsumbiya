@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="titleblock">
+    <p class="label titleblock-label"><a href="{{ '/notes/' | relative_url }}">Notes</a></p>
+    <h1 class="title post-title">{% include title.html %}</h1>
+    {%- if page.summary %}
+    <p class="standfirst">{{ page.summary }}</p>
+    {%- endif %}
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>{% include reading-time.html content=content %}</span>
+      {%- if page.tags.size > 0 %}
+      <span class="sep" aria-hidden="true">·</span>
+      <span class="tags"><span class="sr">Tags: </span>{% for t in page.tags %}<span class="tag">{{ t }}</span>{% endfor %}</span>
+      {%- endif %}
+    </p>
+  </header>
+  <div class="prose post-body">
+{{ content }}
+  </div>
+</article>
+
+<nav class="sect row pager" aria-label="More notes">
+  <p class="margin label">More notes</p>
+  <ol class="body leaders">
+    {%- if page.previous %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Older</span><a href="{{ page.previous.url | relative_url }}" rel="prev">{{ page.previous.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r date">{{ page.previous.date | date: "%-d %b %Y" }}</span></li>
+    {%- endif %}
+    {%- if page.next %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Newer</span><a href="{{ page.next.url | relative_url }}" rel="next">{{ page.next.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r date">{{ page.next.date | date: "%-d %b %Y" }}</span></li>
+    {%- endif %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Index</span><a href="{{ '/notes/' | relative_url }}">All notes</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">5</span></li>
+  </ol>
+</nav>

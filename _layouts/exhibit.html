@@ -1,0 +1,49 @@
+---
+layout: default
+---
+{%- assign list = site.data.exhibits -%}
+{%- for e in list -%}
+{%- if e.slug == page.exhibit -%}
+{%- assign ex = e -%}
+{%- assign i = forloop.index0 -%}
+{%- endif -%}
+{%- endfor -%}
+{%- assign prev_i = i | minus: 1 -%}
+{%- assign next_i = i | plus: 1 -%}
+<header class="titleblock">
+  <p class="label titleblock-label">Figure {{ ex.figure }} · Laboratory</p>
+  <h1 class="title">{% include title.html heading=ex.title em=ex.title_em %}</h1>
+  <p class="standfirst">{{ page.standfirst }}</p>
+  <p class="titleblock-note"><span class="label">This model, held out</span><span class="metric">{{ ex.metric }}</span><span class="metric-label">{{ ex.metric_label }}</span></p>
+</header>
+
+<figure class="fig" data-demo="{{ ex.demo }}">
+  <div class="fig-body"><p class="fig-loading">Loading model</p><noscript><p class="fig-noscript">This figure runs a model in your browser and needs JavaScript.</p></noscript></div>
+  <figcaption class="fig-cap"><span class="fig-num">Figure {{ ex.figure }}.</span>{{ ex.description }}</figcaption>
+</figure>
+
+{{ content }}
+
+<section class="sect row" aria-labelledby="sources-h">
+  <h2 class="margin label" id="sources-h">Sources</h2>
+  <ul class="body linklist">
+    {%- for s in ex.sources %}
+    <li><a href="{{ s.url }}">{{ s.label }}</a></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<nav class="sect row pager" aria-label="Exhibits">
+  <p class="margin label">Other exhibits</p>
+  <ol class="body leaders">
+    {%- if i > 0 %}
+    {%- assign p = list[prev_i] %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Previous</span><a href="{{ '/lab/' | append: p.slug | append: '/' | relative_url }}" rel="prev">{{ p.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">Figure {{ p.figure }}</span></li>
+    {%- endif %}
+    {%- if next_i < list.size %}
+    {%- assign n = list[next_i] %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Next</span><a href="{{ '/lab/' | append: n.slug | append: '/' | relative_url }}" rel="next">{{ n.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">Figure {{ n.figure }}</span></li>
+    {%- endif %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Index</span><a href="{{ '/lab/' | relative_url }}">All four exhibits</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">2</span></li>
+  </ol>
+</nav>

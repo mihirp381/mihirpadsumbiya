@@ -1,0 +1,63 @@
+- title: ChurnGuard
+  tech: XGBoost · Random Forest · Streamlit · LLM
+  award: 1st of 100 · UTD FinHack 2024
+  text: "An end-to-end churn product for banks: historical analysis, per-customer churn prediction and LLM-written retention advice. Reached 89% sensitivity, 8% above the open-source baseline."
+  links:
+    - label: "Run it: Figure 4"
+      url: /lab/customer-churn/
+    - label: GitHub
+      url: https://github.com/mihirp381/ChurnGuard
+
+- title: Mining drug–transporter relations
+  tech: spaCy NER · BioWordVec · CNN + BiLSTM + attention
+  award: 1st place · Lantern Pharma Datathon
+  text: An automated pipeline that pulls papers from PubMed Central and bioRxiv, extracts drug mentions and classifies each drug as an inhibitor or substrate of the BCRP/ABCG2 transporter.
+  links:
+    - label: "Explore it: Figure 5"
+      url: /lab/drug-transporters/
+    - label: GitHub
+      url: https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing
+
+- title: Recovery rates on defaulted auto loans
+  tech: SQL · Python · Power BI
+  award: Semi-finalist · Crescent Bank Datathon
+  text: Merged nine input tables in SQL, engineered features and compared 8–10 models to predict how much of a defaulted balance is recovered after repossession.
+  links:
+    - label: GitHub
+      url: https://github.com/mihirp381/Crescent-bank
+
+- title: Digital marketing budget allocation
+  tech: Python · Alteryx · Tableau
+  award: HP analytics competition
+  text: A zero-inflated regressor inside a non-linear optimiser that allocates spend across channels, fitted on 1M+ synthetic campaign observations.
+  links:
+    - label: GitHub
+      url: https://github.com/mihirp381/HPE_Business_Analytics
+
+- title: Telecom customer churn
+  tech: R · Python · Power BI · SAS
+  text: Classification models and a separate statistical study of churn drivers on IBM’s 7,043-customer telecom dataset.
+  links:
+    - label: GitHub
+      url: https://github.com/mihirp381/Telecom_Customer_Churn
+    - label: SAS study
+      url: https://github.com/mihirp381/Telecom_Churn_Statistical
+
+- title: Mental health risk in teens
+  tech: R · Python · Tableau
+  text: Models built on SAMHSA client-level data (6.9M records) to help schools direct early-intervention resources for ADHD, anxiety and depression.
+  links:
+    - label: GitHub
+      url: https://github.com/mihirp381/Mental_Health_Intervention
+
+- title: Does pioneering win market share?
+  tech: SAS · 2SLS
+  text: A simultaneous-equations (two-stage least squares) study of whether being first into an industry leads to a significantly larger market share.
+  links:
+    - label: GitHub
+      url: https://github.com/mihirp381/Pioneer_effect
+
+- title: Retail chain database design
+  tech: Oracle SQL
+  text: "A normalised schema for a Costco-style retailer: ERD, DDL, triggers and analytical queries covering stores, sales, memberships and shipments."
+  note: Private repository

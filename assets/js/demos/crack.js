@@ -1,4 +1,4 @@
-import { loadJSON, refs, cssVar, hexRgb, onTheme, sampleHook } from "../lib/lab-ui.js";
+import { loadJSON, refs, cssVar, hexRgb, onTheme, sampleHook, scaleHTML, place } from "../lib/lab-ui.js";
 import { fmt, fmtProb, pct, cnnBlocks, channelMean, normalize, confusionStats, squareCrop } from "../lib/demo-math.js";
 
 const S = 128, G = 29, MAP = 126;
@@ -86,10 +86,7 @@ export async function mount(fig, hooks = {}) {
             <p class="lab-big lab-word" data-ref="verdict">&nbsp;</p>
             <p class="lab-meta">P(crack) <span data-ref="p">&nbsp;</span></p>
           </div>
-          <div class="pbar-wrap" aria-hidden="true">
-            <div class="pbar"><span class="pbar-fill" data-ref="fill"></span><span class="pbar-tick" style="left:50%"></span></div>
-            <div class="pbar-lbl"><span style="left:50%;transform:translateX(-50%)">0.5</span></div>
-          </div>
+          ${scaleHTML()}
           <p class="note" data-ref="status">Loading weights, ${mb} MB</p>
           <p class="lab-line" data-ref="truth"></p>
           <p class="note" data-ref="own" hidden>This network has only two answers and no way to say that a photo is not concrete. Away from close-ups like the test images, ignore its confidence.</p>
@@ -149,7 +146,7 @@ export async function mount(fig, hooks = {}) {
   const caption = () => {
     const sp = M.split;
     fig.querySelector(".fig-cap").innerHTML =
-      `<span class="fig-num">Fig. 2</span>The four-layer CNN from my 2022 paper (${fmt(M.params)} parameters), retrained in PyTorch on the same ${fmt(sp.train + sp.val + sp.test)} images with the same split sizes and hyperparameters: ` +
+      `<span class="fig-num">Figure 3.</span>The four-layer CNN from my 2022 paper (${fmt(M.params)} parameters), retrained in PyTorch on the same ${fmt(sp.train + sp.val + sp.test)} images with the same split sizes and hyperparameters: ` +
       `${pct(M.metrics_shipped.accuracy)} accuracy on ${fmt(M.metrics_shipped.n)} held-out images (the paper reported 97.8%). ${q8} of the weights are stored as 8-bit integers (${mb} MB) and the forward pass is hand-written JavaScript${engine.inWorker ? " running in a Web Worker" : ""}. ` +
       `Images: Özgenel (2019), Mendeley Data, CC BY 4.0. Paper: <a href="${DOI}" target="_blank" rel="noopener">doi:10.22115/SCCE.2022.325596.1397</a>.`;
   };
@@ -168,7 +165,7 @@ export async function mount(fig, hooks = {}) {
     const c = r.ov, W = c.width, ctx = c.getContext("2d");
     ctx.clearRect(0, 0, W, W);
     if (!s.map || !W) return;
-    const [R, Gc, B] = hexRgb(cssVar("--b"));
+    const [R, Gc, B] = hexRgb(cssVar("--ox"));
     const img = ctx.createImageData(W, W), d = img.data;
     const i0 = new Int32Array(W), fr = new Float32Array(W);
     for (let p = 0; p < W; p++) {
@@ -196,7 +193,7 @@ export async function mount(fig, hooks = {}) {
 
   const drawMaps = () => {
     if (!s.maps) return;
-    const bg = hexRgb(cssVar("--bg-sunken")), a = hexRgb(cssVar("--a"));
+    const bg = hexRgb(cssVar("--paper")), a = hexRgb(cssVar("--blue"));
     s.maps.forEach((map, k) => {
       const ctx = mapCanvases[k].getContext("2d");
       const n = normalize(map), img = ctx.createImageData(MAP, MAP), d = img.data;
@@ -262,7 +259,8 @@ export async function mount(fig, hooks = {}) {
     r.verdict.dataset.v = crack ? "b" : "a";
     r.fill.dataset.v = r.verdict.dataset.v;
     r.p.textContent = fmtProb(res.p);
-    r.fill.style.width = `${(res.p * 100).toFixed(2)}%`;
+    place(r.fill, res.p);
+    r["fill-v"].textContent = fmtProb(res.p);
     r.status.textContent = `${fmt(res.ms)} ms on your device`;
     if (item.sample) {
       const truth = item.sample.label === 1;

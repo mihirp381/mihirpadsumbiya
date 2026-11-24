@@ -1,0 +1,25 @@
+- title: Laboratory
+  url: /lab/
+  section: lab
+  folio: 2
+  blurb: Three trained models and a dataset, all running in your browser.
+- title: Experience
+  url: /work/
+  section: work
+  folio: 3
+  blurb: Six employers, two degrees, certifications and skills.
+- title: Research
+  url: /research/
+  section: research
+  folio: 4
+  blurb: A peer-reviewed paper, two manuscripts and eight projects.
+- title: Notes
+  url: /notes/
+  section: notes
+  folio: 5
+  blurb: Short pieces of writing, newest first.
+- title: About
+  url: /about/
+  section: about
+  folio: 6
+  blurb: A short biography, two recommendations and how to reach me.

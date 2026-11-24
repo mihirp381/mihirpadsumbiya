@@ -62,11 +62,16 @@ export function line(x1, y1, x2, y2, cls) {
 
 export function axisX(x, values, y, label = String) {
   return line(x(values[0]), y, x(values.at(-1)), y, "ax") +
-    values.map((v) => line(x(v), y, x(v), y + 4, "ax") + text(x(v), y + 16, label(v), "tk", "middle")).join("");
+    values.map((v) => line(x(v), y, x(v), y + 5, "ax") + text(x(v), y + 18, label(v), "tk", "middle")).join("");
 }
 
-export function gridY(y, values, x0, x1, label = String) {
-  return values.map((v) => line(x0, y(v), x1, y(v), "grid") + text(x0 - 6, y(v) + 4, label(v), "tk", "end")).join("");
+export function axisY(y, values, x, label = String) {
+  return line(x, y(values[0]), x, y(values.at(-1)), "ax") +
+    values.map((v) => line(x - 5, y(v), x, y(v), "ax") + text(x - 8, y(v) + 4, label(v), "tk", "end")).join("");
+}
+
+export function gridY(y, values, x0, x1) {
+  return values.map((v) => line(x0, y(v), x1, y(v), "grid")).join("");
 }
 
 export function chart(host, height, draw, label) {

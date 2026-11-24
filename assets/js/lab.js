@@ -5,11 +5,8 @@ let hooks = { sample: params.get("sample"), q: params.get("q") };
 function start(fig) {
   if (!fig || !DEMOS.has(fig.dataset.demo) || "mounted" in fig.dataset) return;
   fig.dataset.mounted = "";
-  let opts = {};
-  if (hooks && !fig.closest("[hidden]")) {
-    opts = hooks;
-    hooks = null;
-  }
+  const opts = hooks || {};
+  hooks = null;
   load(fig, opts);
 }
 
@@ -30,5 +27,4 @@ async function load(fig, opts) {
   }
 }
 
-document.addEventListener("lab:show", (e) => start(document.querySelector(`.fig[data-demo="${e.detail.demo}"]`)));
-document.querySelectorAll(".fig[data-demo][data-shown]").forEach(start);
+document.querySelectorAll(".fig[data-demo]").forEach(start);

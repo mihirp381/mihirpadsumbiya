@@ -1,0 +1,34 @@
+---
+layout: null
+sitemap: false
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>{{ site.feed.title | xml_escape }}</title>
+  <subtitle>{{ site.description | xml_escape }}</subtitle>
+  <id>{{ page.url | absolute_url | xml_escape }}</id>
+  <link href="{{ page.url | absolute_url }}" rel="self" type="application/atom+xml"/>
+  <link href="{{ '/notes/' | absolute_url }}" rel="alternate" type="text/html"/>
+  <updated>{% if site.posts.size > 0 %}{{ site.posts.first.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</updated>
+  <author>
+    <name>{{ site.author | xml_escape }}</name>
+    <uri>{{ '/' | absolute_url }}</uri>
+  </author>
+  {%- assign abs_src = 'src="' | append: site.url | append: '/' %}
+  {%- assign abs_href = 'href="' | append: site.url | append: '/' %}
+  {%- for post in site.posts limit: 20 %}
+  <entry>
+    <title type="html">{{ post.title | xml_escape }}</title>
+    <link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html" title="{{ post.title | xml_escape }}"/>
+    <id>{{ post.url | absolute_url | xml_escape }}</id>
+    <published>{{ post.date | date_to_xmlschema }}</published>
+    <updated>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</updated>
+    <author><name>{{ site.author | xml_escape }}</name></author>
+    {%- for tag in post.tags %}
+    <category term="{{ tag | xml_escape }}"/>
+    {%- endfor %}
+    <summary type="html">{{ post.summary | strip_html | normalize_whitespace | xml_escape }}</summary>
+    <content type="html" xml:base="{{ post.url | absolute_url | xml_escape }}">{{ post.content | replace: 'src="/', abs_src | replace: 'href="/', abs_href | xml_escape }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

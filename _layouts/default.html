@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+{% include head.html %}
+</head>
+<body class="{% if page.hero %}is-home{% else %}is-inner{% endif %}">
+<a class="skip" href="#main">Skip to content</a>
+{% include masthead.html %}
+<main id="main" class="wrap">
+{{ content }}
+</main>
+{% include footer.html %}
+</body>
+</html>

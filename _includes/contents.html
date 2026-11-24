@@ -1,0 +1,9 @@
+<ol class="leaders contents-list">
+  {%- for item in site.data.navigation %}
+  <li class="leader">
+    <span class="leader-l"><a href="{{ item.url | relative_url }}">{{ item.title }}</a><span class="leader-ctx">{{ item.blurb }}</span></span>
+    <span class="dots" aria-hidden="true"></span>
+    <span class="leader-r folio-num">{{ item.folio }}</span>
+  </li>
+  {%- endfor %}
+</ol>

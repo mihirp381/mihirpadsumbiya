@@ -1,0 +1,19 @@
+{%- assign c = site.data.contact -%}
+<footer class="foot">
+  <div class="wrap">
+    <div class="scotch scotch-rev" aria-hidden="true"></div>
+    <div class="foot-run">
+      <p class="foot-l">Mihir Padsumbiya · {{ page.running_title | default: page.title }}</p>
+      {%- if page.folio %}
+      <p class="foot-c"><span class="sr">Page </span>· {{ page.folio }} ·</p>
+      {%- endif %}
+      <ul class="foot-r">
+        <li><a href="mailto:{{ c.email }}">Email</a></li>
+        <li><a href="{{ c.linkedin }}">LinkedIn</a></li>
+        <li><a href="{{ c.github }}">GitHub</a></li>
+        <li><a href="{{ '/notes/feed.xml' | relative_url }}">RSS</a></li>
+      </ul>
+    </div>
+    <p class="colophon">Set in Bodoni, Garamond and Futura-style capitals. Figures are computed on your machine.</p>
+  </div>
+</footer>

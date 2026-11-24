@@ -5,8 +5,10 @@ import { fmt, compoundIndex, searchCompounds } from "../lib/demo-math.js";
 const EXAMPLES = ["mitoxantrone", "topotecan", "imatinib", "methotrexate", "Hoechst 33342"];
 const FILTERS = [["all", "All"], ["inhibitor", "Inhibitors"], ["substrate", "Substrates"]];
 const CODE = "https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing";
-const DARK = { O: "#ff8a7a", N: "#7fb2ff", S: "#e8c55a", P: "#f0a35e", F: "#7fd18b", CL: "#5fcf9f", BR: "#e0905a", I: "#c39bea", B: "#e0a070", SI: "#e0a070" };
-const LIGHT = { O: "#b3261e", N: "#1f5fbf", S: "#8a6d00", P: "#a8531b", F: "#2e7d32", CL: "#17785a", BR: "#9c4a12", I: "#6a3aa0", B: "#9c5a1b", SI: "#9c5a1b" };
+const MK = {
+  inhibitor: '<svg class="mk mk-sq" viewBox="0 0 10 10" aria-hidden="true"><rect x="0.5" y="0.5" width="9" height="9"/></svg>',
+  substrate: '<svg class="mk mk-ci" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>',
+};
 
 let drawer = null;
 const loadDrawer = () =>
@@ -26,7 +28,7 @@ const pipeHTML = (total, inh, sub) => [
   ["Extract", "211,889", "drug mentions found near BCRP/ABCG2 by two NER models"],
   ["Classify", "81.03%", "test accuracy of a CNN + BiLSTM + attention relation classifier"],
   ["Deliver", total, `compounds: ${inh} inhibitors, ${sub} substrates, each with SMILES and sources`],
-].map(([k, n, t]) => `<li class="pipe-s"><span class="pipe-k">${k}</span><span class="pipe-n">${n}</span><span class="pipe-t">${t}</span></li>`).join("");
+].map(([k, n, t], i) => `<li class="pipe-s"><span class="pipe-k"><span class="pipe-i">${i + 1}</span>${k}</span><span class="pipe-n">${n}</span><span class="pipe-t">${t}</span></li>`).join("");
 
 export async function mount(fig, hooks = {}) {
   const body = fig.querySelector(".fig-body");
@@ -38,7 +40,7 @@ export async function mount(fig, hooks = {}) {
       <label class="lab-search"><span class="range-label">Search the mined compounds</span>
         <input type="search" data-ref="q" placeholder="e.g. mitoxantrone" autocomplete="off" spellcheck="false" disabled></label>
       <div class="lab-chips" data-ref="ex">${EXAMPLES.map((e) => `<button type="button" class="chip lab-chip">${esc(e)}</button>`).join("")}</div>
-      <div class="seg" role="group" aria-label="Filter by predicted class" data-ref="filter">${FILTERS.map(([v, l], i) => `<button type="button" data-f="${v}" aria-pressed="${i === 0}">${v === "all" ? "" : `<span class="dot dot-${v === "inhibitor" ? "b" : "a"}"></span>`}${l}</button>`).join("")}</div>
+      <div class="seg" role="group" aria-label="Filter by predicted class" data-ref="filter">${FILTERS.map(([v, l], i) => `<button type="button" data-f="${v}" aria-pressed="${i === 0}">${MK[v] ?? ""}${l}</button>`).join("")}</div>
       <ul class="bc-list" data-ref="list" aria-label="Matching compounds"></ul>
     </section>
     <section class="lab-col lab-out" aria-label="Selected compound">
@@ -74,9 +76,9 @@ export async function mount(fig, hooks = {}) {
       return;
     }
     if (token !== s.token) return;
-    const light = document.documentElement.dataset.theme === "light";
-    const theme = { ...(light ? LIGHT : DARK), C: cssVar("--ink"), H: cssVar("--ink-2"), BACKGROUND: cssVar("--bg-sunken") };
-    const sd = new SD.SvgDrawer({ themes: { site: theme }, bondThickness: 1.1, fontFamily: '"IBM Plex Sans", system-ui, sans-serif', fontSizeLarge: 9, fontSizeSmall: 5, padding: 12 });
+    const other = cssVar("--ink-2");
+    const theme = { ...Object.fromEntries(["H", "S", "P", "F", "CL", "BR", "I", "B", "SI"].map((k) => [k, other])), C: cssVar("--ink"), O: cssVar("--ox"), N: cssVar("--blue"), BACKGROUND: cssVar("--paper") };
+    const sd = new SD.SvgDrawer({ themes: { site: theme }, bondThickness: 1.1, fontFamily: '"Courier Prime", "Courier New", monospace', fontSizeLarge: 11, fontSizeSmall: 7, padding: 12 });
     SD.parse(
       smiles,
       (tree) => {
@@ -102,12 +104,12 @@ export async function mount(fig, hooks = {}) {
     const inh = row[C.activity] === 1, n = row[C.nrefs], refsList = row[C.refs], cid = row[C.cid], smiles = row[C.smiles];
     const link = (href, label) => `<a href="${href}" target="_blank" rel="noopener">${esc(label)}</a>`;
     r.detail.innerHTML = `<h3 class="bc-name">${esc(row[C.name])}</h3>
-      <span class="chip ${inh ? "chip-b" : "chip-a"}"><span class="dot ${inh ? "dot-b" : "dot-a"}"></span>predicted: BCRP ${inh ? "inhibitor" : "substrate"}</span>
       <dl class="kv">
+        <div><dt>predicted</dt><dd class="bc-class">${MK[inh ? "inhibitor" : "substrate"]}BCRP ${inh ? "inhibitor" : "substrate"}</dd></div>
         <div><dt>mentioned in</dt><dd>${fmt(n)} ${n === 1 ? "paper" : "papers"}</dd></div>
-        <div><dt>sources</dt><dd class="bc-refs">${refsList.map((p) => link(`https://pmc.ncbi.nlm.nih.gov/articles/${encodeURIComponent(p)}/`, p)).join(" ")}${n > refsList.length ? ` <span class="bc-more">+${fmt(n - refsList.length)} more</span>` : ""}</dd></div>
         ${cid ? `<div><dt>PubChem</dt><dd>${link(`https://pubchem.ncbi.nlm.nih.gov/compound/${encodeURIComponent(cid)}`, `CID ${cid}`)}</dd></div>` : ""}
-        <div><dt>SMILES</dt><dd class="bc-smiles"><code>${esc(smiles)}</code><button type="button" class="btn btn-ghost btn-sm bc-copy">Copy</button></dd></div>
+        <div class="kv-stack"><dt>sources</dt><dd class="bc-refs">${refsList.map((p) => link(`https://pmc.ncbi.nlm.nih.gov/articles/${encodeURIComponent(p)}/`, p)).join(" ")}${n > refsList.length ? ` <span class="bc-more">+${fmt(n - refsList.length)} more</span>` : ""}</dd></div>
+        <div class="kv-stack"><dt>SMILES</dt><dd class="bc-smiles"><code>${esc(smiles)}</code><button type="button" class="btn btn-ghost btn-sm bc-copy">Copy</button></dd></div>
       </dl>`;
     r.detail.querySelector(".bc-copy").addEventListener("click", (e) => {
       navigator.clipboard?.writeText(smiles).then(() => (e.target.textContent = "Copied"), () => {});
@@ -126,8 +128,8 @@ export async function mount(fig, hooks = {}) {
     s.items = items;
     r.count.textContent = q.trim() ? `${fmt(n)} ${n === 1 ? "match" : "matches"}${n > items.length ? `, first ${items.length} shown` : ""}` : `${items.length} most-referenced of ${fmt(n)}`;
     r.list.innerHTML = items.length
-      ? items.map((c) => `<li><button type="button" class="bc-item" data-i="${c.i}" aria-pressed="${c.i === s.sel}"><span class="bc-item-name">${esc(c.name)}</span>` +
-          `<span class="bc-item-meta"><span class="dot ${c.act ? "dot-b" : "dot-a"}"></span><span class="sr">${c.act ? "inhibitor" : "substrate"}, </span><span class="bc-n">${fmt(c.nrefs)} ${c.nrefs === 1 ? "paper" : "papers"}</span></span></button></li>`).join("")
+      ? items.map((c) => `<li><button type="button" class="bc-item" data-i="${c.i}" aria-pressed="${c.i === s.sel}">${MK[c.act ? "inhibitor" : "substrate"]}<span class="bc-item-name">${esc(c.name)}</span>` +
+          `<span class="dots" aria-hidden="true"></span><span class="sr">${c.act ? "inhibitor" : "substrate"}, </span><span class="bc-n">${fmt(c.nrefs)} ${c.nrefs === 1 ? "paper" : "papers"}</span></button></li>`).join("")
       : `<li class="note bc-empty">No compound names contain “${esc(q.trim())}”.</li>`;
   };
 
@@ -170,7 +172,7 @@ export async function mount(fig, hooks = {}) {
   onTheme(() => s.sel >= 0 && rows[s.sel][C.smiles] && drawMol(rows[s.sel][C.smiles]));
 
   fig.querySelector(".fig-cap").innerHTML =
-    `<span class="fig-num">Fig. 4</span>The dataset my Lantern Pharma Datathon pipeline produced (1st place): ${fmt(meta.total)} compounds mined from ${fmt(meta.unique_references)} papers and labelled as inhibitors or substrates of the BCRP/ABCG2 efflux transporter. ` +
+    `<span class="fig-num">Figure 5.</span>The dataset my Lantern Pharma Datathon pipeline produced (1st place): ${fmt(meta.total)} compounds mined from ${fmt(meta.unique_references)} papers and labelled as inhibitors or substrates of the BCRP/ABCG2 efflux transporter. ` +
     `Search runs locally over a ${fmt(buf.byteLength / 1e6, 1)} MB file. Structures are drawn from SMILES with SmilesDrawer. Code: <a href="${CODE}" target="_blank" rel="noopener">github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing</a>.`;
 
   if (hooks.q) r.q.value = hooks.q;

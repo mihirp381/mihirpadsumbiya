@@ -1,0 +1,15 @@
+- label: Annual savings
+  dagger: true
+  context: from a workforce forecasting platform rolled out to 330 divisions
+  figure: "$8–10M"
+- label: Forecast error, MAPE
+  dagger: true
+  context: daily, after deploying the first explainable volume model
+  figure: "16% → 7%"
+- label: Lab reports processed
+  dagger: true
+  context: by an agentic OCR and classification system
+  figure: "100K+"
+- label: Hackathons won
+  context: first place at the Lantern Pharma Datathon and UTD FinHack 2024
+  figure: "2"

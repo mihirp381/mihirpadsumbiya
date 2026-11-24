@@ -1,0 +1,29 @@
+---
+layout: page
+title: Laboratory
+label: Laboratory
+heading: Models you can run
+heading_em: run
+standfirst: Three trained models and one mined dataset from my projects, shrunk to fit a browser tab. Everything runs on your device; nothing is sent to a server.
+description: Three trained models and one mined dataset from my projects, shrunk to fit a browser tab. Everything runs on your device; nothing is sent to a server.
+---
+<section class="sect row" aria-labelledby="ex-h">
+  <h2 class="margin label" id="ex-h">Exhibits</h2>
+  <ol class="body exhibits">
+    {%- for e in site.data.exhibits %}
+    <li class="exhibit">
+      <span class="ex-num label">Figure {{ e.figure }}</span>
+      <h3 class="ex-title"><a href="{{ '/lab/' | append: e.slug | append: '/' | relative_url }}">{% include title.html heading=e.title em=e.title_em %}</a></h3>
+      <p class="ex-desc">{{ e.description }}</p>
+      <p class="ex-metric"><span class="metric">{{ e.metric }}</span><span class="metric-label">{{ e.metric_label }}</span></p>
+    </li>
+    {%- endfor %}
+  </ol>
+</section>
+
+<section class="sect row" aria-labelledby="code-h">
+  <h2 class="margin label" id="code-h">Code</h2>
+  <div class="body prose">
+    <p>Every model here runs in your browser. Training code is in the repository’s <a href="https://github.com/mihirp381/mihirpadsumbiya/tree/main/tools">tools/</a> folder. How the figures work is written up in <a href="{{ site.baseurl }}{% post_url 2026-11-24-three-models-and-no-server %}">Three models and no server</a>.</p>
+  </div>
+</section>

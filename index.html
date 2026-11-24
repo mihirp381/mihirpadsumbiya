@@ -1,104 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mihir Padsumbiya · Data Scientist</title>
-<meta name="description" content="Mihir Padsumbiya, data scientist at Republic Services: forecasting, causal-ML and agentic-AI systems that field operations run on, with models you can run in the browser.">
-<meta name="theme-color" content="#0a0d12" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mihir Padsumbiya · Data Scientist">
-<meta property="og:description" content="Forecasting, causal-ML and agentic-AI systems that field operations run on, with models you can run in the browser.">
-<meta property="og:url" content="https://mihirp381.github.io/mihirpadsumbiya/">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script>
-(() => {
-  const d = document.documentElement;
-  let t = new URLSearchParams(location.search).get("theme");
-  if (t !== "light" && t !== "dark") { try { t = localStorage.getItem("theme"); } catch (e) {} }
-  if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-  d.dataset.theme = t;
-  d.classList.add("js");
-})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap">
-<link rel="stylesheet" href="assets/css/site.css">
-<script type="module" src="assets/js/site.js"></script>
-<script type="module" src="assets/js/hero.js"></script>
-<script type="module" src="assets/js/lab.js"></script>
-</head>
-<body>
-<svg class="sprite" aria-hidden="true" focusable="false">
-  <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19.2c-3.6 1.1-4.3-1.3-5.6-1.9M15 21.5v-3.2c0-.9-.3-1.6-.8-2.1 2.8-.3 5.3-1.4 5.3-5.8 0-1.2-.4-2.3-1.2-3.1.2-.7.3-1.9-.2-3.2 0 0-1-.3-3.3 1.2a11 11 0 0 0-5.6 0C6.9 3.8 5.9 4.1 5.9 4.1c-.5 1.3-.4 2.5-.2 3.2-.8.8-1.2 1.9-1.2 3.1 0 4.4 2.5 5.5 5.3 5.8-.5.5-.8 1.2-.8 2.1v3.2"/></symbol>
-  <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="2.5"/><path d="M8 10.5v6M11.6 16.5v-6M11.6 13.2c0-1.6 1.1-2.8 2.6-2.8s2.4 1 2.4 2.8v3.3"/><circle cx="8" cy="7.6" r=".4"/></symbol>
-  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></symbol>
-  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4.5v10.5M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/></symbol>
-  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M8 16 16 8M9.5 8H16v6.5"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13.5M13.5 7l5 5-5 5"/></symbol>
-  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.8"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></symbol>
-  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1Z"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.8v12.4l10-6.2Z"/></symbol>
-  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.5 5.5v13M15.5 5.5v13"/></symbol>
-  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.2 12a7.2 7.2 0 1 1-2.1-5.1M19.2 4.6v4h-4"/></symbol>
-  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
-</svg>
-
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="topbar">
-  <div class="wrap topbar-in">
-    <a class="wordmark" href="#top">Mihir Padsumbiya</a>
-    <nav class="nav" aria-label="Primary">
-      <button class="btn-icon nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
-        <svg class="i i-open" aria-hidden="true"><use href="#i-menu"/></svg>
-        <svg class="i i-shut" aria-hidden="true"><use href="#i-close"/></svg>
-        <span class="sr">Menu</span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#lab">Lab</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <div class="topbar-tools">
-      <a class="btn btn-ghost btn-sm" href="MIHIR_PADSUMBIYA_DSI.pdf" download>Résumé</a>
-      <button class="btn-icon theme-toggle" type="button" aria-pressed="true" aria-label="Dark theme">
-        <svg class="i i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
-        <svg class="i i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
-      </button>
-    </div>
+---
+layout: default
+hero: true
+folio: 1
+running_title: Data Scientist
+---
+<section class="opening" aria-labelledby="home-title">
+  <div class="opening-text">
+    <p class="label">Data Scientist · Republic Services</p>
+    <h1 class="tagline" id="home-title">Engineering <em>business&#8209;centric</em> AI and data products.</h1>
+    <p class="lede">I build forecasting, causal-ML and agentic-AI systems that field operations run on. Before that, NLP and generative AI for drug discovery. Published author, and twice a hackathon winner.</p>
+    <p class="actions">
+      <a class="btn" href="{{ '/lab/' | relative_url }}">Enter the laboratory</a>
+      <a class="btn btn-ghost" href="{{ site.data.contact.resume | relative_url }}">Résumé (PDF)</a>
+    </p>
   </div>
-</header>
 
-<main id="main" tabindex="-1">
-
-<section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="wrap hero-grid">
-    <div class="hero-text">
-      <p class="eyebrow">Data Scientist · Republic Services · Plano, TX</p>
-      <h1 id="hero-title">Mihir Padsumbiya</h1>
-      <p class="tagline">Engineering business-centric AI and data products.</p>
-      <p class="hero-lede">I build forecasting, causal-ML and agentic-AI systems that field operations run on. Before that, NLP and generative AI for drug discovery. Published author, and twice a hackathon winner.</p>
-      <div class="hero-actions">
-        <a class="btn" href="#lab">Run the models<svg class="i" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-ghost" href="MIHIR_PADSUMBIYA_DSI.pdf" download><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>Résumé (PDF)</a>
-      </div>
-      <ul class="social">
-        <li><a class="btn-icon" href="https://www.linkedin.com/in/mihir-padsumbiya/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="i" aria-hidden="true"><use href="#i-linkedin"/></svg></a></li>
-        <li><a class="btn-icon" href="https://github.com/mihirp381" target="_blank" rel="noopener" aria-label="GitHub"><svg class="i" aria-hidden="true"><use href="#i-github"/></svg></a></li>
-        <li><a class="btn-icon" href="mailto:padsumbiyamihir@gmail.com" aria-label="Email"><svg class="i" aria-hidden="true"><use href="#i-mail"/></svg></a></li>
-      </ul>
-    </div>
-
-    <figure class="fig hero-fig" id="fig-0">
+  <figure class="fig hero-fig" id="fig-0">
+    <div class="plate plate-crop">
+      <span class="crops" aria-hidden="true"></span>
       <div class="plot-frame">
         <div class="plot" data-hero-plot>
           <canvas class="plot-canvas" role="img" aria-label="Scatter plot of two classes of points with the decision boundary of a neural network trained on them."></canvas>
@@ -119,18 +38,11 @@
           <button type="button" data-set="rings" aria-pressed="false">rings</button>
           <button type="button" data-set="xor" aria-pressed="false">xor</button>
         </div>
-        <div class="ctl-buttons">
-          <button class="btn-icon" type="button" data-hero-pause aria-label="Pause training">
-            <svg class="i i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
-            <svg class="i i-play" aria-hidden="true"><use href="#i-play"/></svg>
-          </button>
-          <button class="btn-icon" type="button" data-hero-retrain aria-label="Retrain from a new random seed"><svg class="i" aria-hidden="true"><use href="#i-refresh"/></svg></button>
-        </div>
         <div class="ctl-group">
           <span class="ctl-label" id="add-as">add points as</span>
           <div class="seg" role="group" aria-labelledby="add-as" data-hero-class>
-            <button type="button" data-class="0" aria-pressed="true"><span class="dot dot-a"></span>class 0</button>
-            <button type="button" data-class="1" aria-pressed="false"><span class="dot dot-b"></span>class 1</button>
+            <button type="button" data-class="0" aria-pressed="true"><svg class="mk mk-ci" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>class 0</button>
+            <button type="button" data-class="1" aria-pressed="false"><svg class="mk mk-sq" viewBox="0 0 10 10" aria-hidden="true"><rect x="0.5" y="0.5" width="9" height="9"/></svg>class 1</button>
           </div>
         </div>
         <label class="range" data-hero-speed-wrap>
@@ -138,442 +50,61 @@
           <input type="range" min="0" max="4" step="1" value="1" data-hero-speed>
           <output class="range-val" data-hero-speed-val>1×</output>
         </label>
+        <div class="ctl-buttons">
+          <button class="btn btn-ghost btn-sm" type="button" data-hero-pause aria-label="Pause training"><span class="when-run">Pause</span><span class="when-paused">Resume</span></button>
+          <button class="btn btn-ghost btn-sm" type="button" data-hero-retrain aria-label="Retrain from a new random seed">Retrain</button>
+        </div>
       </div>
-      <figcaption class="fig-cap"><span class="fig-num">Fig. 0</span><span data-hero-cap>A small neural network that learns a decision boundary in your browser.</span></figcaption>
-    </figure>
-  </div>
+    </div>
+    <figcaption class="fig-cap"><span class="fig-num">Figure 1.</span><span data-hero-cap>A small neural network that learns a decision boundary in your browser.</span></figcaption>
+  </figure>
+</section>
 
-  <div class="wrap">
-    <ul class="impact" aria-label="Selected results">
-      <li>
-        <p class="impact-label">Annual savings<sup>†</sup></p>
-        <p class="impact-num">$8–10M</p>
-        <p class="impact-ctx">a year, from a workforce forecasting platform rolled out to 330 divisions</p>
+<section class="sect row" aria-labelledby="hl-h">
+  <h2 class="margin label" id="hl-h">Highlights</h2>
+  <div class="body">
+    <ul class="leaders highlights">
+      {%- for h in site.data.highlights %}
+      <li class="leader">
+        <span class="leader-l"><span class="hl-label">{{ h.label }}{% if h.dagger %}<sup>†</sup>{% endif %}</span><span class="leader-ctx">{{ h.context }}</span></span>
+        <span class="dots" aria-hidden="true"></span>
+        <span class="leader-r hl-fig">{{ h.figure }}</span>
       </li>
-      <li>
-        <p class="impact-label">Forecast error<sup>†</sup></p>
-        <p class="impact-num">16% <span class="arrow">→</span> 7%
-          <svg class="bars" viewBox="0 0 22 32" aria-hidden="true"><rect class="bar-b" x="1" y="0" width="8" height="32"/><rect class="bar-a" x="13" y="18" width="8" height="14"/></svg>
-        </p>
-        <p class="impact-ctx">daily MAPE after deploying the first explainable volume model</p>
-      </li>
-      <li>
-        <p class="impact-label">Lab reports<sup>†</sup></p>
-        <p class="impact-num">100K+</p>
-        <p class="impact-ctx">processed by an agentic OCR and classification system</p>
-      </li>
-      <li>
-        <p class="impact-label">Hackathons</p>
-        <p class="impact-num">2&nbsp;×&nbsp;1st</p>
-        <p class="impact-ctx">first place at the Lantern Pharma Datathon and UTD FinHack 2024</p>
-      </li>
+      {%- endfor %}
     </ul>
-    <p class="note impact-note"><sup>†</sup> Figures from my résumé; Republic Services, 2024–present.</p>
+    <p class="footnote">† Figures from my résumé; Republic Services, 2024–present.</p>
   </div>
 </section>
 
-<section class="section" id="lab" aria-labelledby="lab-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">01</span> / Lab</p>
-      <h2 id="lab-title">Models you can run</h2>
-      <p class="lede">Four of my projects, shrunk to fit a browser tab. Each figure runs a real trained model on your device; nothing is sent to a server.</p>
-    </header>
-    <noscript><p class="note noscript-note">The Lab figures run models in your browser and need JavaScript.</p></noscript>
-    <div class="tabs reveal" data-tabs>
-      <div class="tablist" role="tablist" aria-label="Lab figures">
-        <button class="tab" role="tab" type="button" id="tab-concrete" aria-controls="lab-concrete" aria-selected="true"><span class="tab-num">Fig. 1</span><span class="tab-title">Concrete strength</span></button>
-        <button class="tab" role="tab" type="button" id="tab-crack" aria-controls="lab-crack" aria-selected="false" tabindex="-1"><span class="tab-num">Fig. 2</span><span class="tab-title">Crack detection</span></button>
-        <button class="tab" role="tab" type="button" id="tab-churn" aria-controls="lab-churn" aria-selected="false" tabindex="-1"><span class="tab-num">Fig. 3</span><span class="tab-title">Customer churn</span></button>
-        <button class="tab" role="tab" type="button" id="tab-bcrp" aria-controls="lab-bcrp" aria-selected="false" tabindex="-1"><span class="tab-num">Fig. 4</span><span class="tab-title">Drug–transporter mining</span></button>
-      </div>
-      <div class="tabpanel" role="tabpanel" id="lab-concrete" aria-labelledby="tab-concrete" tabindex="0">
-        <figure class="fig" data-demo="concrete"><div class="fig-body"><p class="fig-loading">Loading model</p></div><figcaption class="fig-cap"></figcaption></figure>
-      </div>
-      <div class="tabpanel" role="tabpanel" id="lab-crack" aria-labelledby="tab-crack" tabindex="0" hidden>
-        <figure class="fig" data-demo="crack"><div class="fig-body"><p class="fig-loading">Loading model</p></div><figcaption class="fig-cap"></figcaption></figure>
-      </div>
-      <div class="tabpanel" role="tabpanel" id="lab-churn" aria-labelledby="tab-churn" tabindex="0" hidden>
-        <figure class="fig" data-demo="churn"><div class="fig-body"><p class="fig-loading">Loading model</p></div><figcaption class="fig-cap"></figcaption></figure>
-      </div>
-      <div class="tabpanel" role="tabpanel" id="lab-bcrp" aria-labelledby="tab-bcrp" tabindex="0" hidden>
-        <figure class="fig" data-demo="bcrp"><div class="fig-body"><p class="fig-loading">Loading model</p></div><figcaption class="fig-cap"></figcaption></figure>
-      </div>
-    </div>
+<section class="sect row" aria-labelledby="toc-h">
+  <h2 class="margin label" id="toc-h">Contents</h2>
+  <div class="body">
+    {% include contents.html %}
   </div>
 </section>
 
-<section class="section" id="experience" aria-labelledby="experience-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">02</span> / Experience</p>
-      <h2 id="experience-title">Experience</h2>
-    </header>
-    <ol class="timeline">
-      <li class="tl reveal">
-        <p class="tl-when">Oct 2024 – Present</p>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="logo-tile"><img src="images/Republic_Services_logo.png" alt="Republic Services logo" width="320" height="111" loading="lazy"></span>
-            <div>
-              <h3 class="tl-org">Republic Services</h3>
-              <p class="tl-role">Data Scientist, Operations <span class="tl-place">Phoenix, AZ (remote)</span></p>
-            </div>
-          </div>
-          <ul class="tl-points">
-            <li><span class="tag">Forecasting platform</span> Architected and led the enterprise rollout of an end-to-end workforce forecasting platform (data pipelines, predictive models and a secure Streamlit UI with RBAC) across 330 regional divisions, driving <strong>$8M–$10M in annual savings</strong> by optimizing driver headcount and preventing contract loss.</li>
-            <li><span class="tag">Agentic AI</span> Engineered a proprietary agentic AI system (a custom OCR engine, classification models and an autonomous agentic loop) to automate safety-critical hazardous-waste routing, processing 100K+ lab reports to drive <strong>about $20M in labor savings</strong> and improve contaminant detection accuracy.</li>
-            <li><span class="tag">Causal ML</span> Used Causal Forests to quantify the heterogeneous treatment effect of missed pickups and service delays on commercial client churn, enabling targeted retention interventions that preserved <strong>$1.2M in annualized revenue</strong>.</li>
-            <li><span class="tag">Time series</span> Pioneered and deployed the company’s first explainable, multivariate time-series volume forecasting model, cutting daily error <strong>from 16% to 7% MAPE</strong> and establishing a core predictive engine for dynamic pricing, equipment procurement and sales.</li>
-            <li><span class="tag">Experimentation</span> Designed and ran A/B tests and a lightweight Power BI pilot-monitoring dashboard to evaluate a new routing algorithm projected to drive <strong>$40M–$50M in savings</strong>; A/B tested exception-logging workflows in the driver companion app, cutting driver data-entry time <strong>by 20%</strong>.</li>
-            <li><span class="tag">Data products</span> Partnered with finance, business operations and sales to architect multi-consumer Snowflake data products, engineering 5+ new KPIs including sequence adherence; launched a Snowflake-hosted recommendation web app that helped mitigate union-strike impact and protect <strong>$4M in at-risk revenue</strong>.</li>
-            <li><span class="tag">Mentoring</span> Helped onboard and mentor <strong>6 new team members</strong> over two years.</li>
-          </ul>
-        </div>
+{%- if site.posts.size > 0 %}
+<section class="sect row" aria-labelledby="latest-h">
+  <h2 class="margin label" id="latest-h">Latest notes</h2>
+  <div class="body">
+    <ol class="notelist">
+      {%- for post in site.posts limit: 3 %}
+      <li class="note-item">
+        <time class="date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+        <h3 class="note-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="note-sum">{{ post.summary }}</p>
       </li>
-      <li class="tl reveal">
-        <p class="tl-when">Jan 2024 – Oct 2024</p>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="logo-tile"><img src="images/Lantern_Pharma_Logo.jpg" alt="Lantern Pharma logo" width="320" height="192" loading="lazy"></span>
-            <div>
-              <h3 class="tl-org">Lantern Pharma <span class="tl-ticker">NASDAQ: LTRN</span></h3>
-              <p class="tl-role">Data Scientist, NLP &amp; Generative AI <span class="tl-place">Dallas, TX</span></p>
-            </div>
-          </div>
-          <ul class="tl-points">
-            <li>Architected an end-to-end NLP and LLM pipeline (PyTorch, spaCy, fine-tuned GPT-3.5) to process 200&nbsp;GB+ of healthcare literature, automating semantic search and feature extraction to engineer 10+ high-value datasets that raised an in-house model’s accuracy <strong>from 80% to 97%</strong>.</li>
-            <li>Built and tested binary classifiers on protein and small-molecule interaction data, reaching <strong>98.3% accuracy</strong> in predicting compound permeability.</li>
-            <li>Cut data discovery time for researchers by <strong>50–80%</strong>.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="tl reveal">
-        <p class="tl-when">Aug 2023 – Dec 2023</p>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="logo-tile"><img src="images/UTD.png" alt="The University of Texas at Dallas logo" width="213" height="120" loading="lazy"></span>
-            <div>
-              <h3 class="tl-org">The University of Texas at Dallas</h3>
-              <p class="tl-role">Teaching Assistant, Statistics <span class="tl-place">Richardson, TX</span></p>
-            </div>
-          </div>
-          <ul class="tl-points">
-            <li>Taught graduate-level Advanced Statistics for Data Science (BUAN&nbsp;6359) and Managerial Methods in Decision Making Under Uncertainty (OPRE&nbsp;3360): regression, hypothesis testing and interpretation of statistical models in R and SAS.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="tl reveal">
-        <p class="tl-when">May 2023 – Aug 2023</p>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="logo-tile"><img src="images/energybox.png" alt="Energybox logo" width="193" height="48" loading="lazy"></span>
-            <div>
-              <h3 class="tl-org">Energybox</h3>
-              <p class="tl-role">Data Analyst Intern <span class="tl-place">Nashville, TN</span></p>
-            </div>
-          </div>
-          <ul class="tl-points">
-            <li>Designed an anomaly detection system for energy-usage data with Python and AWS SageMaker, improving the baseline model’s F1-score <strong>from 85% to 95%</strong>.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="tl reveal">
-        <p class="tl-when">Jan 2023 – May 2023</p>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="logo-tile"><img src="images/conagra-brands.png" alt="Conagra Brands logo" width="306" height="223" loading="lazy"></span>
-            <div>
-              <h3 class="tl-org">Conagra Brands</h3>
-              <p class="tl-role">Student Consultant, Data Analysis</p>
-            </div>
-          </div>
-          <ul class="tl-points">
-            <li>Found pricing gaps, thresholds and cross-category opportunities in sales data using SQLite, Python, Alteryx, SAS and Tableau.</li>
-          </ul>
-        </div>
-      </li>
-      <li class="tl reveal">
-        <p class="tl-when">May 2021 – Oct 2021</p>
-        <div class="tl-body">
-          <div class="tl-head">
-            <span class="logo-tile logo-mono" aria-hidden="true">A</span>
-            <div>
-              <h3 class="tl-org">Atharva System</h3>
-              <p class="tl-role">Data Analyst Intern <span class="tl-place">Ahmedabad, India</span></p>
-            </div>
-          </div>
-        </div>
-      </li>
+      {%- endfor %}
     </ol>
+    <p class="more"><a href="{{ '/notes/' | relative_url }}">All notes</a></p>
   </div>
 </section>
+{%- endif %}
 
-<section class="section" id="research" aria-labelledby="research-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">03</span> / Research</p>
-      <h2 id="research-title">Research</h2>
-      <p class="lede">My first models were about concrete, not customers.</p>
-    </header>
-    <ol class="refs">
-      <li class="ref reveal">
-        <span class="ref-n">[1]</span>
-        <div class="ref-body">
-          <h3 class="ref-title">Automatic Crack Detection Using Convolutional Neural Network.</h3>
-          <p class="ref-meta">M. Padsumbiya, V. Brahmbhatt, S. P. Thakkar. <i>Journal of Soft Computing in Civil Engineering</i> 6(3), 2022. <span class="chip chip-a">Peer-reviewed</span></p>
-          <p class="ref-text">A four-layer CNN that classifies 128×128 photos of concrete as cracked or intact, reaching 97.8% accuracy on 4,000 held-out images.</p>
-          <p class="links">
-            <a href="https://doi.org/10.22115/scce.2022.325596.1397" target="_blank" rel="noopener">DOI 10.22115/SCCE.2022.325596.1397<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
-            <a href="#lab-crack">Run it: Fig. 2</a>
-            <a href="https://github.com/mihirp381/Automatic-crack-detection-using-CNN-" target="_blank" rel="noopener">PDF and repo<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
-          </p>
-        </div>
-      </li>
-      <li class="ref reveal">
-        <span class="ref-n">[2]</span>
-        <div class="ref-body">
-          <h3 class="ref-title">Compressive Strength Predictions for Concrete Using Various Machine Learning Techniques.</h3>
-          <p class="ref-meta">Manuscript, with V. Brahmbhatt and S. P. Thakkar, Nirma University, 2021.</p>
-          <p class="ref-text">Thirty model variants compared on 1,030 lab mixes, from linear regression to stacked ensembles and neural networks; the best network reached R²&nbsp;0.93.</p>
-          <p class="links">
-            <a href="#lab-concrete">Run it: Fig. 1</a>
-            <a href="https://github.com/mihirp381/Compressive-strength-prediction-for-concrete-using-various-ML-techniques" target="_blank" rel="noopener">Manuscript<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
-          </p>
-        </div>
-      </li>
-      <li class="ref reveal">
-        <span class="ref-n">[3]</span>
-        <div class="ref-body">
-          <h3 class="ref-title">Stock Market Prediction Using NLP Classification and LSTM Model: A Comparative Approach.</h3>
-          <p class="ref-meta">Manuscript, with T. Upadhyay, Nirma University, 2021.</p>
-          <p class="ref-text">News-headline classifiers compared against an LSTM that combines technical indicators with 30 days of headline sentiment.</p>
-          <p class="links">
-            <a href="https://github.com/mihirp381/Stock-market-prediction-using-NLP-classification-and-LSTM-model-A-comparitive-approach" target="_blank" rel="noopener">Manuscript<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
-          </p>
-        </div>
-      </li>
-    </ol>
+<section class="sect row" aria-labelledby="pq-h">
+  <h2 class="margin label" id="pq-h">In others’ words</h2>
+  <div class="body">
+    {%- assign rec = site.data.recommendations | first %}
+    {% include pullquote.html rec=rec %}
   </div>
 </section>
-
-<section class="section" id="projects" aria-labelledby="projects-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">04</span> / Projects</p>
-      <h2 id="projects-title">Competitions and projects</h2>
-    </header>
-    <div class="cards">
-      <article class="card reveal">
-        <p class="card-tech">XGBoost · Random Forest · Streamlit · LLM</p>
-        <h3 class="card-title">ChurnGuard</h3>
-        <p class="chip chip-b">1st of 100 · UTD FinHack 2024</p>
-        <p class="card-text">An end-to-end churn product for banks: historical analysis, per-customer churn prediction and LLM-written retention advice. Reached 89% sensitivity, 8% above the open-source baseline.</p>
-        <p class="links"><a href="#lab-churn">Run it: Fig. 3</a><a href="https://github.com/mihirp381/ChurnGuard" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">spaCy NER · BioWordVec · CNN + BiLSTM + attention</p>
-        <h3 class="card-title">Mining drug–transporter relations</h3>
-        <p class="chip chip-b">1st place · Lantern Pharma Datathon</p>
-        <p class="card-text">An automated pipeline that pulls papers from PubMed Central and bioRxiv, extracts drug mentions and classifies each drug as an inhibitor or substrate of the BCRP/ABCG2 transporter.</p>
-        <p class="links"><a href="#lab-bcrp">Explore it: Fig. 4</a><a href="https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">SQL · Python · Power BI</p>
-        <h3 class="card-title">Recovery rates on defaulted auto loans</h3>
-        <p class="chip">Semi-finalist · Crescent Bank Datathon</p>
-        <p class="card-text">Merged nine input tables in SQL, engineered features and compared 8–10 models to predict how much of a defaulted balance is recovered after repossession.</p>
-        <p class="links"><a href="https://github.com/mihirp381/Crescent-bank" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">Python · Alteryx · Tableau</p>
-        <h3 class="card-title">Digital marketing budget allocation</h3>
-        <p class="chip">HP analytics competition</p>
-        <p class="card-text">A zero-inflated regressor inside a non-linear optimiser that allocates spend across channels, fitted on 1M+ synthetic campaign observations.</p>
-        <p class="links"><a href="https://github.com/mihirp381/HPE_Business_Analytics" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">R · Python · Power BI · SAS</p>
-        <h3 class="card-title">Telecom customer churn</h3>
-        <p class="card-text">Classification models and a separate statistical study of churn drivers on IBM’s 7,043-customer telecom dataset.</p>
-        <p class="links"><a href="https://github.com/mihirp381/Telecom_Customer_Churn" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a><a href="https://github.com/mihirp381/Telecom_Churn_Statistical" target="_blank" rel="noopener">SAS study<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">R · Python · Tableau</p>
-        <h3 class="card-title">Mental health risk in teens</h3>
-        <p class="card-text">Models built on SAMHSA client-level data (6.9M records) to help schools direct early-intervention resources for ADHD, anxiety and depression.</p>
-        <p class="links"><a href="https://github.com/mihirp381/Mental_Health_Intervention" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">SAS · 2SLS</p>
-        <h3 class="card-title">Does pioneering win market share?</h3>
-        <p class="card-text">A simultaneous-equations (two-stage least squares) study of whether being first into an industry leads to a significantly larger market share.</p>
-        <p class="links"><a href="https://github.com/mihirp381/Pioneer_effect" target="_blank" rel="noopener">GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-      </article>
-      <article class="card reveal">
-        <p class="card-tech">Oracle SQL</p>
-        <h3 class="card-title">Retail chain database design</h3>
-        <p class="card-text">A normalised schema for a Costco-style retailer: ERD, DDL, triggers and analytical queries covering stores, sales, memberships and shipments.</p>
-        <p class="links"><span class="note">Private repository</span></p>
-      </article>
-    </div>
-    <p class="more"><a href="https://github.com/mihirp381" target="_blank" rel="noopener">All repositories on GitHub<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a></p>
-  </div>
-</section>
-
-<section class="section" id="skills" aria-labelledby="skills-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">05</span> / Skills</p>
-      <h2 id="skills-title">Skills</h2>
-    </header>
-    <div class="skills">
-      <div class="skill-group reveal">
-        <h3 class="group-label">Machine learning &amp; statistics</h3>
-        <ul class="tags"><li class="tag">A/B testing</li><li class="tag">Causal inference</li><li class="tag">Experimental design</li><li class="tag">Statistical modeling</li><li class="tag">Predictive modeling</li><li class="tag">Time-series forecasting</li><li class="tag">XGBoost</li><li class="tag">scikit-learn</li><li class="tag">pandas</li><li class="tag">NumPy</li><li class="tag">MLOps</li><li class="tag">ML evaluation systems</li></ul>
-      </div>
-      <div class="skill-group reveal">
-        <h3 class="group-label">AI &amp; NLP engineering</h3>
-        <ul class="tags"><li class="tag">PyTorch</li><li class="tag">Agentic orchestration (LangChain)</li><li class="tag">RAG</li><li class="tag">Snowflake Cortex</li><li class="tag">LLM fine-tuning</li><li class="tag">pgvector</li><li class="tag">LLMOps</li><li class="tag">Agent evals</li></ul>
-      </div>
-      <div class="skill-group reveal">
-        <h3 class="group-label">Data engineering &amp; cloud</h3>
-        <ul class="tags"><li class="tag">AWS</li><li class="tag">Snowflake</li><li class="tag">Apache Spark</li><li class="tag">dbt</li><li class="tag">ETL/ELT architecture</li><li class="tag">Power BI</li></ul>
-      </div>
-      <div class="skill-group reveal">
-        <h3 class="group-label">Programming &amp; deployment</h3>
-        <ul class="tags"><li class="tag">Python</li><li class="tag">SQL (PostgreSQL)</li><li class="tag">R</li><li class="tag">SAS</li><li class="tag">asyncio</li><li class="tag">FastAPI</li><li class="tag">Docker</li><li class="tag">Streamlit</li><li class="tag">Git</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="about" aria-labelledby="about-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">06</span> / About</p>
-      <h2 id="about-title">About</h2>
-    </header>
-    <div class="about reveal">
-      <img class="portrait" src="images/mihir-padsumbiya.webp" alt="Portrait of Mihir Padsumbiya" width="720" height="1008" loading="lazy">
-      <div class="about-text">
-        <p>I’m Mihir Harjivan Padsumbiya, a data scientist with a Master’s in Business Analytics and AI and a background in civil engineering and finance. That mix is where my work started: my first machine learning projects predicted the strength of concrete and found cracks in it, and one of them became a peer-reviewed paper.</p>
-        <p>I firmly believe the ultimate goal of data science is to solve business problems, which is why I prioritise communicating insights clearly, with storytelling tailored to the people who have to act on them. Today that means forecasting, causal ML and agentic AI systems for operations at Republic Services.</p>
-        <p>Beyond the technical work, I care about collaboration and continuous learning, whether that is mentoring new data scientists or competing in hackathons.</p>
-      </div>
-    </div>
-
-    <h3 class="sub-head reveal">Education</h3>
-    <div class="edu">
-      <article class="card edu-card reveal">
-        <div class="edu-head">
-          <span class="logo-tile"><img src="images/UTD.png" alt="The University of Texas at Dallas logo" width="213" height="120" loading="lazy"></span>
-          <div>
-            <h4 class="edu-school">The University of Texas at Dallas</h4>
-            <p class="edu-degree">M.S. Business Analytics &amp; Artificial Intelligence (Data Science)</p>
-          </div>
-        </div>
-        <dl class="kv">
-          <div><dt>dates</dt><dd>Aug 2022 – May 2024</dd></div>
-          <div><dt>GPA</dt><dd>3.94 / 4.0, Highest Distinction</dd></div>
-          <div><dt>award</dt><dd>Dean’s Excellence Scholar</dd></div>
-          <div><dt>certified</dt><dd>Applied Machine Learning, Healthcare Analytics</dd></div>
-        </dl>
-      </article>
-      <article class="card edu-card reveal">
-        <div class="edu-head">
-          <span class="logo-tile"><img src="images/Nirma_University_Logo.png" alt="Nirma University logo" width="275" height="183" loading="lazy"></span>
-          <div>
-            <h4 class="edu-school">Nirma University</h4>
-            <p class="edu-degree">B.Tech. Civil Engineering, minor in Finance</p>
-          </div>
-        </div>
-        <dl class="kv">
-          <div><dt>dates</dt><dd>Aug 2017 – May 2021</dd></div>
-          <div><dt>GPA</dt><dd>3.5 / 4.0, First Class</dd></div>
-        </dl>
-      </article>
-    </div>
-
-    <div class="about-cols">
-      <div class="reveal">
-        <h3 class="sub-head">Certifications</h3>
-        <ul class="certs">
-          <li><span class="cert-name">Databricks Fundamentals</span><span class="cert-by">Databricks</span><span class="cert-date">Sep 2024</span></li>
-          <li><a class="cert-name" href="https://achieve.snowflake.com/5f40dd61-1747-4dda-8c23-7c7cde882ddc" target="_blank" rel="noopener">SnowPro Core Certification<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a><span class="cert-by">Snowflake</span><span class="cert-date">May 2024 – May 2026</span></li>
-          <li><a class="cert-name" href="https://learn.microsoft.com/api/credentials/share/en-us/PadsumbiyaMihirHarjivan-0703/842D9494DA65726D?sharingId=31CE2240E5E29761" target="_blank" rel="noopener">Microsoft Certified: Azure AI Fundamentals<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a><span class="cert-by">Microsoft</span><span class="cert-date">Mar 2024</span></li>
-          <li><span class="cert-name">Amazon Web Services Cloud Practitioner</span><span class="cert-by">AWS Training Online</span><span class="cert-date">Apr 2023</span></li>
-          <li><a class="cert-name" href="https://www.credly.com/badges/a7cf94be-3603-4317-ab99-604eba9ce7e2/public_url" target="_blank" rel="noopener">Alteryx Designer Core<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a><span class="cert-by">Alteryx</span><span class="cert-date">Jan 2023</span></li>
-          <li><span class="cert-name">Snowflake hands-on badges: Data Warehousing, Data Applications</span><span class="cert-by">Snowflake</span><span class="cert-date">Mar 2023</span></li>
-        </ul>
-      </div>
-      <div class="reveal">
-        <h3 class="sub-head">Leadership</h3>
-        <ul class="lead">
-          <li>
-            <span class="logo-tile"><img src="images/RCNI.jpeg" alt="Rotaract Club logo" width="225" height="225" loading="lazy"></span>
-            <div>
-              <h4 class="lead-role">Vice-President, Rotaract Club</h4>
-              <p class="lead-date">Jun 2019 – Oct 2020</p>
-              <p>Led an organisation of 300+ students running blood donation camps, workshops, national-level events and concerts for the India Literacy Mission; worked with 500+ firms on sponsorships, managing a budget above $50,000 and drafting 100+ MOUs.</p>
-            </div>
-          </li>
-          <li>
-            <span class="logo-tile"><img src="images/BALC.png" alt="UT Dallas MS Business Analytics logo" width="210" height="240" loading="lazy"></span>
-            <div>
-              <h4 class="lead-role">Student Mentor, UT Dallas</h4>
-              <p class="lead-date">Nov 2022 – Dec 2023</p>
-              <p>Guided four incoming students through their first semesters.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="recommendations" aria-labelledby="rec-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">07</span> / Recommendations</p>
-      <h2 id="rec-title">In others’ words</h2>
-    </header>
-    <div class="quotes">
-      <figure class="quote reveal">
-        <blockquote><p>I had the pleasure to be Mihir’s direct supervisor during his Energybox summer internship. Despite only being with us 4 months, Mihir provided a tremendous amount of value. He quickly understood his assigned tasks and took ownership to complete them with minimal hand holding. He demonstrated both strong technical skills and great communication skills. In addition to completing all assigned work he also took initiative to solve other problems, such as creating a Python script to automatically extract data from PDFs, saving many hours of company time on data entry. Any Data science team would be lucky to have Mihir.</p></blockquote>
-        <figcaption><span class="avatar" aria-hidden="true">BM</span><span><span class="q-name">Beau Mahadev</span><span class="q-role">Direct Supervisor · Energybox</span></span></figcaption>
-      </figure>
-      <figure class="quote reveal">
-        <blockquote><p>I had the opportunity to teach Mihir at UTD in my Professional Development class. Mihir was a model student: always on time, attentive, and very engaged. Mihir stood out from some of his peers in the way he took the course very seriously. He sought ways constantly sharpen himself and his skills. Mihir is dynamic, smart, and self-aware. I have full confidence that he will excel at any organisation he joins.</p></blockquote>
-        <figcaption><span class="avatar" aria-hidden="true">IN</span><span><span class="q-name">Ike Nwabah</span><span class="q-role">Professor · University of Texas at Dallas</span></span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<section class="section contact" id="contact" aria-labelledby="contact-title">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow"><span class="eyebrow-n">08</span> / Contact</p>
-      <h2 id="contact-title">Get in touch</h2>
-      <p class="lede">The fastest way to reach me is email.</p>
-    </header>
-    <p class="contact-mail reveal"><a href="mailto:padsumbiyamihir@gmail.com">padsumbiyamihir@gmail.com</a></p>
-    <div class="contact-actions reveal">
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/mihir-padsumbiya/" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
-      <a class="btn btn-ghost" href="https://github.com/mihirp381" target="_blank" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
-      <a class="btn btn-ghost" href="MIHIR_PADSUMBIYA_DSI.pdf" download><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>Résumé</a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <div class="wrap footer-in">
-    <p>© 2026 Mihir Padsumbiya</p>
-    <p>Every model on this page runs in your browser. Training code is in the repository’s <a href="https://github.com/mihirp381/mihirpadsumbiya/tree/main/tools" target="_blank" rel="noopener">tools/</a> folder.</p>
-  </div>
-</footer>
-</body>
-</html>

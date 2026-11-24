@@ -1,15 +1,13 @@
 import { predictRaw, sigmoid } from "../lib/gbm.js";
 import { syncRange } from "../site.js";
-import { chart, scaleAsinh, scaleLinear, axisX, gridY, linePath, text, line } from "../lib/plot.js";
-import { loadJSON, refs, scheduler, sliderHTML, chipsHTML, pressChip, sampleHook, divergingRows } from "../lib/lab-ui.js";
+import { chart, scaleAsinh, scaleLinear, axisX, axisY, gridY, linePath, text, line } from "../lib/plot.js";
+import { loadJSON, refs, scheduler, sliderHTML, chipsHTML, pressChip, sampleHook, divergingRows, scaleHTML, place, edgeOf } from "../lib/lab-ui.js";
 import { fmt, signed, pct, clamp, money, roundMoney, drivers, thresholdStats, thresholdSentence, outcomeText, caughtChurner } from "../lib/demo-math.js";
 
 const POS = 200;
 const DAYS = 6;
 const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
 const REPO = "https://github.com/mihirp381/mihirpadsumbiya/blob/main/tools/train_churn.py";
-
-const edge = (p) => (p < 0.12 ? "left:0" : p > 0.88 ? "right:0" : `left:${(p * 100).toFixed(2)}%;transform:translateX(-50%)`);
 
 export async function mount(fig, hooks = {}) {
   const m = await loadJSON(new URL("../../models/churn.json", import.meta.url));
@@ -39,11 +37,7 @@ export async function mount(fig, hooks = {}) {
         <p class="lab-big"><span data-ref="p"></span></p>
         <p class="lab-verdict" data-ref="verdict"></p>
       </div>
-      <div class="pbar-wrap" aria-hidden="true">
-        <div class="pbar-lbl pbar-lbl-top"><span style="${edge(base)}">base rate ${pct(base)}</span></div>
-        <div class="pbar"><span class="pbar-fill" data-ref="fill"></span><span class="pbar-tick" style="left:${base * 100}%"></span><span class="pbar-tick pbar-tick-t" data-ref="ttick"></span></div>
-        <div class="pbar-lbl"><span data-ref="tlbl"></span></div>
-      </div>
+      ${scaleHTML([{ at: base, cls: "scale-m-base", label: `base rate ${pct(base)}` }, { cls: "scale-m-t", tick: "ttick", lbl: "tlbl" }])}
     </section>
     <section class="lab-col lab-charts">
       <div class="lab-block">
@@ -82,31 +76,33 @@ export async function mount(fig, hooks = {}) {
   const stats = thresholds.map(thresholdStats);
   const s = { x: baseline.slice(), sample: -1, edited: false, t: Math.max(0, stats.findIndex((e) => Math.abs(e.t - 0.3) < 1e-9)), p: 0 };
 
-  const prChart = chart(r.pr, 170, (w, h) => {
-    const ml = 36, mr = 10, mt = 12, mb = 26;
+  const prChart = chart(r.pr, 196, (w, h) => {
+    const ml = 40, mr = 12, mt = 24, mb = 42;
     const x = scaleLinear(0, 1, ml, w - mr), y = scaleLinear(0, 1, h - mb, mt);
     const rec = stats.map((e) => [x(e.t), y(e.recall)]);
     const pre = stats.filter((e) => e.precision !== null).map((e) => [x(e.t), y(e.precision)]);
     const cur = stats[s.t];
-    let out = gridY(y, [0, 0.5, 1], ml, w - mr, (v) => pct(v, 0)) + axisX(x, [0, 0.5, 1], h - mb, (v) => v.toFixed(1));
-    out += `<path class="ln ln-ink" d="${linePath(rec)}"/><path class="ln ln-a" d="${linePath(pre)}"/>`;
+    let out = gridY(y, [0.5, 1], ml + 1, w - mr) + axisY(y, [0, 0.5, 1], ml, (v) => pct(v, 0)) + axisX(x, [0, 0.5, 1], h - mb, (v) => v.toFixed(1));
+    out += text(w - mr, h - 3, "THRESHOLD", "ttl", "end");
+    out += `<path class="ln ln-dash" d="${linePath(rec)}"/><path class="ln" d="${linePath(pre)}"/>`;
     const k = stats.findIndex((e) => e.t >= 0.72);
-    out += text(x(stats[k].t) + 4, y(stats[k].recall) - 8, "recall", "val") + text(x(stats[k].t) - 4, y(stats[k].precision) - 8, "precision", "val val-a", "end");
-    out += line(x(cur.t), mt, x(cur.t), h - mb, "guide");
-    out += `<circle class="pt pt-ink" cx="${x(cur.t)}" cy="${y(cur.recall)}" r="3.5"/>`;
-    if (cur.precision !== null) out += `<circle class="pt pt-a" cx="${x(cur.t)}" cy="${y(cur.precision)}" r="3.5"/>`;
+    out += text(x(stats[k].t) + 4, y(stats[k].recall) - 8, "recall", "val") + text(x(stats[k].t) - 4, y(stats[k].precision) - 8, "precision", "val", "end");
+    const e = edgeOf(cur.t);
+    out += line(x(cur.t), mt - 6, x(cur.t), h - mb, "guide") + text(x(cur.t) + (e === "r" ? 4 : e === "l" ? -4 : 0), mt - 12, `t ${cur.t.toFixed(2)}`, "tk", e === "r" ? "end" : e === "l" ? "start" : "middle");
+    out += `<circle class="pt" cx="${x(cur.t)}" cy="${y(cur.recall)}" r="3.5"/>`;
+    if (cur.precision !== null) out += `<circle class="pt" cx="${x(cur.t)}" cy="${y(cur.precision)}" r="3.5"/>`;
     return out;
   }, "Recall and precision on held-out customers against the decision threshold.");
 
-  chart(r.cal, (w) => Math.min(w, 280), (w, h) => {
-    const ml = 38, mr = 10, mt = 12, mb = 38;
+  chart(r.cal, (w) => Math.min(w, 300), (w, h) => {
+    const ml = 44, mr = 12, mt = 24, mb = 42;
     const side = Math.min(w - ml - mr, h - mt - mb);
     const x = scaleLinear(0, 1, ml, ml + side), y = scaleLinear(0, 1, mt + side, mt);
     const pts = calibration.map(([p, o]) => [x(p), y(o)]);
-    let out = gridY(y, [0, 0.5, 1], ml, ml + side, (v) => pct(v, 0)) + axisX(x, [0, 0.5, 1], mt + side, (v) => pct(v, 0));
+    let out = gridY(y, [0.5, 1], ml + 1, ml + side) + axisY(y, [0, 0.5, 1], ml, (v) => pct(v, 0)) + axisX(x, [0, 0.5, 1], mt + side, (v) => pct(v, 0));
     out += line(x(0), y(0), x(1), y(1), "guide");
-    out += text(ml + side, mt + side + 32, "mean predicted", "tk tk-name", "end") + text(ml + 4, mt + 4, "observed", "tk tk-name");
-    out += `<path class="ln ln-a" d="${linePath(pts)}"/>` + pts.map(([cx, cy]) => `<circle class="pt pt-a" cx="${cx}" cy="${cy}" r="3"/>`).join("");
+    out += text(ml + side, mt + side + 39, "MEAN PREDICTED", "ttl", "end") + text(ml - 8, mt - 12, "OBSERVED", "ttl");
+    out += `<path class="ln" d="${linePath(pts)}"/>` + pts.map(([cx, cy]) => `<circle class="pt-o" cx="${cx}" cy="${cy}" r="3.5"/>`).join("");
     return out;
   }, `Calibration: ${calibration.map(([p, o]) => `predicted ${pct(p)}, observed ${pct(o)}`).join("; ")}.`);
 
@@ -134,11 +130,12 @@ export async function mount(fig, hooks = {}) {
     r.p.textContent = pct(s.p);
     r.verdict.textContent = flagged ? "Flag for retention" : "No action";
     r.verdict.dataset.v = flagged ? "b" : "a";
-    r.fill.style.width = `${(s.p * 100).toFixed(2)}%`;
+    place(r.fill, s.p);
     r.fill.dataset.v = r.verdict.dataset.v;
-    r.ttick.style.left = `${st.t * 100}%`;
+    r["fill-v"].textContent = pct(s.p);
+    place(r.ttick, st.t);
     r.tlbl.textContent = `threshold ${pct(st.t, 0)}`;
-    r.tlbl.style.cssText = edge(st.t);
+    place(r.tlbl, st.t);
 
     if (s.sample < 0) r.outcome.textContent = "Pick a held-out customer to see what really happened.";
     else if (s.edited) r.outcome.textContent = `${names[s.sample]} has been edited, so the real outcome no longer applies.`;
@@ -197,7 +194,7 @@ export async function mount(fig, hooks = {}) {
 
   const hp = meta.hyperparameters, mt = meta.metrics;
   fig.querySelector(".fig-cap").innerHTML =
-    `<span class="fig-num">Fig. 3</span>A compact refit of ChurnGuard, my team's winning entry at UTD FinHack 2024, sized for the browser: gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) ` +
+    `<span class="fig-num">Figure 4.</span>A compact refit of ChurnGuard, my team's winning entry at UTD FinHack 2024, sized for the browser: gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) ` +
     `on ${WORDS[F.length] || F.length} account features, trained on ${fmt(meta.split.train)} customers and tested once on ${fmt(meta.split.test)} at the natural ${pct(meta.base_rate)} churn rate. ` +
     `ROC-AUC ${fmt(mt.test_roc_auc, 2)}, PR-AUC ${fmt(mt.test_pr_auc_average_precision, 2)}. No resampling, so the probabilities are calibrated. The hackathon model was XGBoost on ten features. ` +
     `Reproduce with <a href="${REPO}" target="_blank" rel="noopener">tools/train_churn.py</a>.`;

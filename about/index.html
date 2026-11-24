@@ -1,0 +1,49 @@
+---
+layout: page
+title: About
+section: about
+folio: 6
+label: About
+heading: About the author
+heading_em: author
+standfirst: A data scientist with a background in civil engineering and finance.
+description: About Mihir Padsumbiya, data scientist at Republic Services, with recommendations and contact details.
+---
+<section class="sect row bio" aria-labelledby="bio-h">
+  <h2 class="sr" id="bio-h">Biography</h2>
+  <figure class="margin portrait">
+    <div class="plate-frame"><img src="{{ '/images/mihir-padsumbiya.webp' | relative_url }}" alt="Portrait of Mihir Padsumbiya" width="720" height="1008"></div>
+    <figcaption class="fig-cap">Mihir Padsumbiya.</figcaption>
+  </figure>
+  <div class="body prose">
+    <p>I’m Mihir Harjivan Padsumbiya, a data scientist with a Master’s in Business Analytics and AI and a background in civil engineering and finance. That mix is where my work started: my first machine learning projects predicted the strength of concrete and found cracks in it, and one of them became a peer-reviewed paper.</p>
+    <p>I firmly believe the ultimate goal of data science is to solve business problems, which is why I prioritise communicating insights clearly, with storytelling tailored to the people who have to act on them. Today that means forecasting, causal ML and agentic AI systems for operations at Republic Services.</p>
+    <p>Beyond the technical work, I care about collaboration and continuous learning, whether that is mentoring new data scientists or competing in hackathons.</p>
+  </div>
+</section>
+
+<section class="sect row" aria-labelledby="recs-h">
+  <h2 class="margin label" id="recs-h">In others’ words</h2>
+  <div class="body">
+    {%- for r in site.data.recommendations %}
+    <figure class="testimonial">
+      <blockquote><p>{{ r.text }}</p></blockquote>
+      <figcaption><span class="pq-name">{{ r.name }}</span><span class="pq-role">{{ r.role }}</span></figcaption>
+    </figure>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="sect row" aria-labelledby="contact-h">
+  <h2 class="margin label" id="contact-h">Get in touch</h2>
+  <div class="body">
+    <p class="lede-sm">The fastest way to reach me is email.</p>
+    {%- assign c = site.data.contact %}
+    <ul class="leaders ledger contact">
+      <li class="leader"><span class="leader-l"><span class="label">Email</span></span><span class="dots" aria-hidden="true"></span><span class="leader-r"><a href="mailto:{{ c.email }}">{{ c.email }}</a></span></li>
+      <li class="leader"><span class="leader-l"><span class="label">LinkedIn</span></span><span class="dots" aria-hidden="true"></span><span class="leader-r"><a href="{{ c.linkedin }}">mihir-padsumbiya</a></span></li>
+      <li class="leader"><span class="leader-l"><span class="label">GitHub</span></span><span class="dots" aria-hidden="true"></span><span class="leader-r"><a href="{{ c.github }}">mihirp381</a></span></li>
+      <li class="leader"><span class="leader-l"><span class="label">Résumé</span></span><span class="dots" aria-hidden="true"></span><span class="leader-r"><a href="{{ c.resume | relative_url }}">PDF</a></span></li>
+    </ul>
+  </div>
+</section>

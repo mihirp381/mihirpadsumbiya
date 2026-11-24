@@ -1,0 +1,5 @@
+{%- assign r = include.rec -%}
+<figure class="pullquote">
+  <blockquote><p>{{ include.text | default: r.pull }}</p></blockquote>
+  <figcaption><span class="pq-name">{{ r.name }}</span><span class="pq-role">{{ r.role }}</span></figcaption>
+</figure>
