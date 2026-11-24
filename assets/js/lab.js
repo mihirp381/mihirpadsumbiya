@@ -1,4 +1,4 @@
-const DEMOS = new Set(["concrete", "crack", "churn", "bcrp"]);
+const DEMOS = new Set(["concrete", "crack", "churn", "bcrp", "churnguard"]);
 const params = new URLSearchParams(location.search);
 let hooks = { sample: params.get("sample"), q: params.get("q") };
 

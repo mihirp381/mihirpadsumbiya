@@ -5,6 +5,8 @@
   links:
     - label: "Run it: Figure 4"
       url: /lab/customer-churn/
+    - label: "Run the app: Figure 6"
+      url: /lab/churnguard-app/
     - label: GitHub
       url: https://github.com/mihirp381/ChurnGuard
 

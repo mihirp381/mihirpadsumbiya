@@ -39,6 +39,8 @@
       url: https://github.com/mihirp381/ChurnGuard
     - label: Training script
       url: https://github.com/mihirp381/mihirpadsumbiya/blob/main/tools/train_churn.py
+    - label: "The Streamlit app: Figure 6"
+      url: /lab/churnguard-app/
 
 - slug: drug-transporters
   demo: bcrp
@@ -51,3 +53,28 @@
   sources:
     - label: Pipeline on GitHub
       url: https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing
+
+- slug: churnguard-app
+  demo: churnguard
+  figure: 6
+  title: ChurnGuard, the app
+  title_em: app
+  description: The ChurnGuard Streamlit app itself, running on Python in your browser.
+  caption: "The ChurnGuard Streamlit app, running in this tab on Python compiled to WebAssembly. It scores with the same 250 trees as Figure 4, walked in Python, and writes its notes with fixed rules where the hackathon build used an LLM."
+  metric: 1st
+  metric_kicker: The original
+  metric_label: place, UTD FinHack 2024
+  loading: Loading
+  noscript: This figure runs a Streamlit app in your browser and needs JavaScript. The Python source is linked below.
+  links:
+    - label: Open the app on its own page
+      url: /lab/churnguard-app/app/
+    - label: Python source
+      url: https://github.com/mihirp381/mihirpadsumbiya/tree/main/assets/apps/churnguard
+  sources:
+    - label: ChurnGuard on GitHub
+      url: https://github.com/mihirp381/ChurnGuard
+    - label: The app source
+      url: https://github.com/mihirp381/mihirpadsumbiya/tree/main/assets/apps/churnguard
+    - label: stlite
+      url: https://github.com/whitphx/stlite

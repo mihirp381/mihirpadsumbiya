@@ -14,7 +14,7 @@ _includes/         head, masthead, footer, contents list, figure, pull quote, ti
 _posts/            notes, one Markdown file each
 _drafts/           post-template.md, a note that shows every supported element
 index.html         home (folio 1)
-lab/               Laboratory index and one folder per exhibit (folio 2)
+lab/               Laboratory index and one folder per exhibit (folio 2); lab/churnguard-app/app/ is the bare page that runs the Streamlit app
 work/              experience, education, certifications, skills (folio 3)
 research/          papers and projects (folio 4)
 notes/             notes index and the Atom feed (folio 5)
@@ -23,6 +23,8 @@ about/             biography, recommendations, contact (folio 6)
 assets/css/        site.css, the whole stylesheet
 assets/js/         site.js (theme, ranges), hero.js (home figure), lab.js and demos/ (exhibits), lib/ (models)
 assets/models/     exported models loaded by the exhibits
+assets/apps/       the ChurnGuard Streamlit app (Figure 6): app.py, core.py, population.json
+assets/img/        poster screenshots and sample photos for the exhibits
 assets/notes/      images used in notes
 tools/             training, export and check scripts; not published
 ```
@@ -54,6 +56,23 @@ Tables, footnotes (`[^name]`), fenced code with a language, block quotes and lis
 node tools/parity.mjs
 node tools/hero_check.mjs
 node tools/demo_check.mjs
+python3 tools/churnguard_check.py
 ```
 
-`parity.mjs` compares the exported tree models with the Python predictions, `hero_check.mjs` checks the network on the home page, and `demo_check.mjs` checks the logic behind each exhibit. Run all three before changing anything in the Lab. How the models are trained and exported is in [tools/README.md](tools/README.md).
+`parity.mjs` compares the exported tree models with the Python predictions, `hero_check.mjs` checks the network on the home page, `demo_check.mjs` checks the logic behind each exhibit, and `churnguard_check.py` checks that the app's Python tree walker matches the stored probabilities and `gbm.js` to 1e-9 and that every customer gets five notes. It needs only the standard library and Node. Run all four before changing anything in the Lab. How the models are trained and exported is in [tools/README.md](tools/README.md).
+
+## The Streamlit app (Figure 6)
+
+`assets/apps/churnguard/app.py` is an ordinary Streamlit app. On the site it runs in the visitor's browser through [stlite](https://github.com/whitphx/stlite), which runs Streamlit on Pyodide (Python compiled to WebAssembly):
+
+- `lab/churnguard-app/` is the exhibit. Its script, `assets/js/demos/churnguard.js`, shows a screenshot (`assets/img/churnguard/`) and a Start button. Nothing is fetched from the CDN until Start is pressed; then it loads the bare page below in an iframe, in the current theme.
+- `lab/churnguard-app/app/` is the bare page. It imports `@stlite/browser` from jsDelivr at one pinned version and mounts the app with `app.py`, `core.py`, `population.json` and `assets/models/churn.json`, passed by relative URL. The Streamlit theme and `browser.gatherUsageStats = false` are set there, and its CSS hides Streamlit's header and chart toolbars and stacks the three columns into two rows below 1100px and one column below 760px. It shows a message with a source link if the runtime cannot be fetched.
+- `core.py` uses only the standard library. It walks the same 250 trees as Figure 4 (inputs cast to float32 with `struct`) and writes the rule-based notes. `population.json` holds percentiles and box-plot statistics of the training split, made by `tools/churnguard_stats.py`.
+
+To bump stlite, change the version in every URL in `lab/churnguard-app/app/index.html`, then check the app, the Customer base tab and the console in both themes.
+
+To run the app outside the browser, from the repo root, with Streamlit installed:
+
+```
+streamlit run assets/apps/churnguard/app.py --browser.gatherUsageStats false --theme.base light --theme.primaryColor "#7b1e2b" --theme.backgroundColor "#eeeade" --theme.secondaryBackgroundColor "#e5e0d1" --theme.textColor "#17150f"
+```

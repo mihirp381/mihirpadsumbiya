@@ -4,7 +4,7 @@ summary: How the figures in my Laboratory run trained models inside the browser 
 tags: [lab, javascript, machine learning]
 ---
 
-The [Laboratory]({{ '/lab/' | relative_url }}) on this site has four exhibits. Three of them are trained models and the fourth is a searchable dataset. None of them talks to a server. When you move a slider on the concrete page, the new prediction is computed by your own machine, inside the tab you are reading. This note is about how that works.
+The [Laboratory]({{ '/lab/' | relative_url }}) on this site has five exhibits: three trained models, a searchable dataset and a Streamlit app. None of them talks to a server. When you move a slider on the concrete page, the new prediction is computed by your own machine, inside the tab you are reading. This note is about how that works.
 
 <!--more-->
 
@@ -14,7 +14,7 @@ The usual route would be to wrap each model in a small API and call it from the 
 
 ## Trees are arrays
 
-Two exhibits, [concrete strength]({{ '/lab/concrete-strength/' | relative_url }}) and [customer churn]({{ '/lab/customer-churn/' | relative_url }}), are gradient-boosted trees trained with scikit-learn. A fitted tree is a handful of parallel arrays: for each node, the feature it splits on, the threshold, the left child, the right child, and a value at the leaves. I export those arrays to JSON, one object per tree, and walk them in the browser. The whole evaluator in `assets/js/lib/gbm.js` is 20 lines. This is the loop that does the work:
+Two of the models, [concrete strength]({{ '/lab/concrete-strength/' | relative_url }}) and [customer churn]({{ '/lab/customer-churn/' | relative_url }}), are gradient-boosted trees trained with scikit-learn. A fitted tree is a handful of parallel arrays: for each node, the feature it splits on, the threshold, the left child, the right child, and a value at the leaves. I export those arrays to JSON, one object per tree, and walk them in the browser. The whole evaluator in `assets/js/lib/gbm.js` is 20 lines. This is the loop that does the work:
 
 ```js
 for (const tr of model.trees) {
@@ -47,8 +47,10 @@ There is no library on the JavaScript side either. The forward pass, two convolu
 
 Nothing loads until you open the page that needs it, so the home page never pays for the network. The [drug–transporter]({{ '/lab/drug-transporters/' | relative_url }}) exhibit works the same way: its 8,094 compounds arrive as one JSON file when you open that page, and the search runs locally. Nothing you type, pick or upload is sent anywhere.
 
+The fifth exhibit is the exception to the no-library rule. [ChurnGuard, the app]({{ '/lab/churnguard-app/' | relative_url }}) is my team's hackathon entry, and it runs real Streamlit on Python compiled to WebAssembly. That runtime is about 31 MB, so it is fetched from a CDN only when you press Start. It scores with the same 250 trees as the churn exhibit, walked in Python instead of JavaScript.
+
 ## Checking the copy against the original
 
-A model that runs in a different language is a copy, and a copy can be wrong in ways that look right. The repository has a small Node script, `tools/parity.mjs`, that loads the exported files, runs the same inputs Python ran, and exits with an error if any prediction drifts past its tolerance. Two more scripts check the network on the home page and the logic behind each exhibit. All three run before any change to the Lab goes out. A model that is right almost everywhere is the hardest kind of wrong to notice, and a check like this is the cheapest way I know to rule it out.
+A model that runs in a different language is a copy, and a copy can be wrong in ways that look right. The repository has a small Node script, `tools/parity.mjs`, that loads the exported files, runs the same inputs Python ran, and exits with an error if any prediction drifts past its tolerance. Three more scripts check the network on the home page, the logic behind each exhibit and the Python copy of the churn trees. All four run before any change to the Lab goes out. A model that is right almost everywhere is the hardest kind of wrong to notice, and a check like this is the cheapest way I know to rule it out.
 
 [^parity]: The tolerance in the check is 1e-9. The largest difference it currently finds is about 2e-11, for both tree models.

@@ -2,7 +2,7 @@
   url: /lab/
   section: lab
   folio: 2
-  blurb: Three trained models and a dataset, all running in your browser.
+  blurb: Three trained models, a dataset and a Streamlit app, all running in your browser.
 - title: Experience
   url: /work/
   section: work

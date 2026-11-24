@@ -848,4 +848,17 @@ html:not(.js) .fig-loading { display: none; }
 
 .lab-error { gap: 0.9rem; place-content: center; padding: 1rem; text-align: center; }
 
+.fig > .fig-body.cg-body { padding: 0; }
+.cg-shot img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--ink); }
+.cg-shot .cg-shot-dark, :root[data-theme="dark"] .cg-shot .cg-shot-light { display: none; }
+:root[data-theme="dark"] .cg-shot .cg-shot-dark { display: block; }
+.cg-start { display: flex; align-items: center; gap: 1rem 2rem; padding: clamp(1rem, 2.6vw, 1.6rem); }
+.cg-start .note { flex: 1; max-width: 42em; margin: 0; }
+.cg-frame { display: block; width: 100%; height: 820px; border: 0; background: var(--paper); }
+.fig-links { margin: 0.8rem 0 0; padding: 0; list-style: none; }
+@media (max-width: 599.98px) {
+  .cg-start { flex-direction: column; align-items: stretch; }
+  .cg-frame { height: 85vh; height: 85svh; }
+}
+
 /* ==== end lab demos ==== */

@@ -4,7 +4,7 @@
   dates: Oct 2024 – Present
   points:
     - tag: Forecasting platform
-      text: Architected and led the enterprise rollout of an end-to-end workforce forecasting platform (data pipelines, predictive models and a secure Streamlit UI with RBAC) across 330 regional divisions, driving **$8M–$10M in annual savings** by optimizing driver headcount and preventing contract loss.
+      text: Architected and led the enterprise rollout of an end-to-end forecasting platform (data pipelines, predictive models and a secure Streamlit UI with RBAC) across 330 regional divisions, driving **$5M+ in annual savings**.
     - tag: Agentic AI
       text: Engineered a proprietary agentic AI system (a custom OCR engine, classification models and an autonomous agentic loop) to automate safety-critical hazardous-waste routing, processing 100K+ lab reports to drive **about $20M in labor savings** and improve contaminant detection accuracy.
     - tag: Causal ML

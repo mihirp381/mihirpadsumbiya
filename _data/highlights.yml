@@ -1,7 +1,7 @@
 - label: Annual savings
   dagger: true
-  context: from a workforce forecasting platform rolled out to 330 divisions
-  figure: "$8–10M"
+  context: from a forecasting platform rolled out to 330 divisions
+  figure: "$5M+"
 - label: Forecast error, MAPE
   dagger: true
   context: daily, after deploying the first explainable volume model

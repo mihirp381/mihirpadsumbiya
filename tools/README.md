@@ -23,9 +23,11 @@ Run every command from the repo root with `python -I` (isolated mode). The data 
 | `train_crack.py` | Trains the CNN on `mps`, writes checkpoints, split and `train_log.json` to `crack-run/` |
 | `export_crack.py` | Quantises, evaluates, writes `assets/models/crack-cnn.{bin,json}`, `assets/img/crack/s01..s12.jpg`, `fixtures/crack_parity.json` |
 | `build_bcrp.py` | `assets/models/bcrp.json` |
+| `churnguard_stats.py` | `assets/apps/churnguard/population.json`: percentiles and box-plot statistics of the churn training split, for the Figure 6 app |
 | `parity.mjs` | Node check that the JS libraries match Python; exits non-zero on failure |
 | `hero_check.mjs` | Gradient check and convergence check for the hero network in `assets/js/lib/mlp.js` |
-| `demo_check.mjs` | Checks the pure logic behind the four Lab figures against the shipped model files |
+| `demo_check.mjs` | Checks the pure logic behind the Lab figures against the shipped model files |
+| `churnguard_check.py` | Standard-library check that the Figure 6 app's Python tree walker matches `churn.json` and `gbm.js` to 1e-9 and writes five notes per customer |
 
 ## Reproduce
 
@@ -38,9 +40,11 @@ python -I tools/crack_prep.py --src DATA/crack --out DATA/crack-cache
 python -I tools/train_crack.py --cache DATA/crack-cache --out DATA/crack-run
 python -I tools/export_crack.py --cache DATA/crack-cache --run DATA/crack-run
 python -I tools/build_bcrp.py --tsv REFS/Drug-Extraction-using-Natural-Language-Processing/training.tsv
+python -I tools/churnguard_stats.py --csv REFS/ChurnGuard/Cleaned_Modelling.csv
 node tools/parity.mjs
 node tools/hero_check.mjs
 node tools/demo_check.mjs
+python3 -I tools/churnguard_check.py
 ```
 
 GBM results are deterministic. CNN training on `mps` is not bit-reproducible run to run.
