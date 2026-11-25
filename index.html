@@ -10,7 +10,7 @@ running_title: Data Scientist
     <h1 class="tagline" id="home-title">Engineering <em>business&#8209;centric</em> AI and data products.</h1>
     <p class="lede">I build forecasting, causal-ML and agentic-AI systems that field operations run on. Before that, NLP and generative AI for drug discovery. Published author, and twice a hackathon winner.</p>
     <p class="actions">
-      <a class="btn" href="{{ '/lab/' | relative_url }}">Enter the laboratory</a>
+      <a class="btn" href="{{ '/lab/' | relative_url }}">See the project demos</a>
       <a class="btn btn-ghost" href="{{ site.data.contact.resume | relative_url }}">Résumé (PDF)</a>
     </p>
   </div>
@@ -56,7 +56,7 @@ running_title: Data Scientist
         </div>
       </div>
     </div>
-    <figcaption class="fig-cap"><span class="fig-num">Figure 1.</span><span data-hero-cap>A small neural network that learns a decision boundary in your browser.</span></figcaption>
+    <figcaption class="fig-cap"><span data-hero-cap>A small neural network that learns a decision boundary in your browser.</span><span class="fig-hint" data-hero-hint hidden>Click the plot to add data.</span></figcaption>
   </figure>
 </section>
 
@@ -66,27 +66,19 @@ running_title: Data Scientist
     <ul class="leaders highlights">
       {%- for h in site.data.highlights %}
       <li class="leader">
-        <span class="leader-l"><span class="hl-label">{{ h.label }}{% if h.dagger %}<sup>†</sup>{% endif %}</span><span class="leader-ctx">{{ h.context }}</span></span>
+        <span class="leader-l"><span class="hl-label">{{ h.label }}</span>{% if h.context %}<span class="leader-ctx">{{ h.context }}</span>{% endif %}</span>
         <span class="dots" aria-hidden="true"></span>
         <span class="leader-r hl-fig">{{ h.figure }}</span>
       </li>
       {%- endfor %}
     </ul>
-    <p class="footnote">† Republic Services, 2024–present.</p>
   </div>
 </section>
 
-<section class="sect row" aria-labelledby="toc-h">
-  <h2 class="margin label" id="toc-h">Contents</h2>
-  <div class="body">
-    {% include contents.html %}
-  </div>
-</section>
-
-{%- if site.posts.size > 0 %}
 <section class="sect row" aria-labelledby="latest-h">
   <h2 class="margin label" id="latest-h">Latest notes</h2>
   <div class="body">
+    {%- if site.posts.size > 0 %}
     <ol class="notelist">
       {%- for post in site.posts limit: 3 %}
       <li class="note-item">
@@ -97,14 +89,23 @@ running_title: Data Scientist
       {%- endfor %}
     </ol>
     <p class="more"><a href="{{ '/notes/' | relative_url }}">All notes</a></p>
+    {%- else %}
+    <p class="empty">No notes yet.</p>
+    {%- endif %}
   </div>
 </section>
-{%- endif %}
 
 <section class="sect row" aria-labelledby="pq-h">
   <h2 class="margin label" id="pq-h">In others’ words</h2>
   <div class="body">
     {%- assign rec = site.data.recommendations | first %}
     {% include pullquote.html rec=rec %}
+  </div>
+</section>
+
+<section class="sect row" aria-labelledby="toc-h">
+  <h2 class="margin label" id="toc-h">Contents</h2>
+  <div class="body">
+    {% include contents.html %}
   </div>
 </section>

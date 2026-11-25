@@ -54,8 +54,9 @@ function init() {
 
   const probe = createNet();
   fig.querySelector("[data-hero-cap]").textContent =
-    `Not a video. A 2→${probe.H}→${probe.H}→1 tanh network (${paramCount(probe).toLocaleString("en-US")} parameters) learning a decision boundary ` +
-    "by gradient descent with Adam, in your browser. Hand-written JavaScript, no libraries. Click the plot to add data.";
+    `A 2→${probe.H}→${probe.H}→1 tanh network (${paramCount(probe).toLocaleString("en-US")} parameters) learning a decision boundary ` +
+    "by gradient descent with Adam, in your browser.";
+  fig.querySelector("[data-hero-hint]").hidden = false;
 
   function readColors() {
     const cs = getComputedStyle(document.documentElement);

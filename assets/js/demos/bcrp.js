@@ -172,7 +172,7 @@ export async function mount(fig, hooks = {}) {
   onTheme(() => s.sel >= 0 && rows[s.sel][C.smiles] && drawMol(rows[s.sel][C.smiles]));
 
   fig.querySelector(".fig-cap").innerHTML =
-    `<span class="fig-num">Figure 5.</span>The dataset my Lantern Pharma Datathon pipeline produced (1st place): ${fmt(meta.total)} compounds mined from ${fmt(meta.unique_references)} papers and labelled as inhibitors or substrates of the BCRP/ABCG2 efflux transporter. ` +
+    `<span class="fig-num">Figure 4.</span>The dataset my Lantern Pharma Datathon pipeline produced (1st place): ${fmt(meta.total)} compounds mined from ${fmt(meta.unique_references)} papers and labelled as inhibitors or substrates of the BCRP/ABCG2 efflux transporter. ` +
     `Search runs locally over a ${fmt(buf.byteLength / 1e6, 1)} MB file. Structures are drawn from SMILES with SmilesDrawer. Code: <a href="${CODE}" target="_blank" rel="noopener">github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing</a>.`;
 
   if (hooks.q) r.q.value = hooks.q;

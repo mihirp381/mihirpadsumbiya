@@ -194,7 +194,7 @@ export async function mount(fig, hooks = {}) {
 
   const hp = meta.hyperparameters, mt = meta.metrics;
   fig.querySelector(".fig-cap").innerHTML =
-    `<span class="fig-num">Figure 4.</span>A compact refit of ChurnGuard, my team's winning entry at UTD FinHack 2024, sized for the browser: gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) ` +
+    `<span class="fig-num">Figure 3.</span>A compact refit of ChurnGuard, my team's winning entry at UTD FinHack 2024, sized for the browser: gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) ` +
     `on ${WORDS[F.length] || F.length} account features, trained on ${fmt(meta.split.train)} customers and tested once on ${fmt(meta.split.test)} at the natural ${pct(meta.base_rate)} churn rate. ` +
     `ROC-AUC ${fmt(mt.test_roc_auc, 2)}, PR-AUC ${fmt(mt.test_pr_auc_average_precision, 2)}. No resampling, so the probabilities are calibrated. The hackathon model was XGBoost on ten features. ` +
     `Reproduce with <a href="${REPO}" target="_blank" rel="noopener">tools/train_churn.py</a>.`;

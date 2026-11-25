@@ -3,9 +3,9 @@
   award: 1st of 100 · UTD FinHack 2024
   text: "An end-to-end churn product for banks: historical analysis, per-customer churn prediction and LLM-written retention advice. Reached 89% sensitivity, 8% above the open-source baseline."
   links:
-    - label: "Run it: Figure 4"
+    - label: "Run it: Figure 3"
       url: /lab/customer-churn/
-    - label: "Run the app: Figure 6"
+    - label: "Run the app: Figure 5"
       url: /lab/churnguard-app/
     - label: GitHub
       url: https://github.com/mihirp381/ChurnGuard
@@ -15,7 +15,7 @@
   award: 1st place · Lantern Pharma Datathon
   text: An automated pipeline that pulls papers from PubMed Central and bioRxiv, extracts drug mentions and classifies each drug as an inhibitor or substrate of the BCRP/ABCG2 transporter.
   links:
-    - label: "Explore it: Figure 5"
+    - label: "Explore it: Figure 4"
       url: /lab/drug-transporters/
     - label: GitHub
       url: https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing

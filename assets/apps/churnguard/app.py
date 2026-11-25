@@ -224,7 +224,7 @@ with mid:
         st.subheader("Why this score")
         st.caption("The hackathon build asked an LLM to write these notes. This browser edition writes them with fixed rules, "
                    "because a static page cannot hold an API key. They are ordered by how far the score moves when that "
-                   "input is swapped for the median customer's value, the same what-if as Figure 4.")
+                   "input is swapped for the median customer's value, the same what-if as Figure 3.")
         st.markdown("\n".join(f"{i + 1}. **{n['label']}** {n['text']}" for i, n in enumerate(core.notes(M, POP, x))))
     with base:
         st.subheader("Churned and retained customers")
@@ -255,6 +255,6 @@ with right:
             f"- Data: a public [bank customer churn dataset](https://www.kaggle.com/datasets/pentakrishnakishore/bank-customer-churn-data) "
             f"as cleaned by the team, {META['rows_used']:,} customers: {META['split']['train']:,} to train, {META['split']['test']:,} held out.\n"
             f"- Model: {META['trees']} gradient-boosted trees of depth {hp['max_depth']} on {len(F)} account features, the same file as "
-            f"Figure 4, walked tree by tree in Python. ROC-AUC {mt['test_roc_auc']:.2f} on the held-out customers.\n"
+            f"Figure 3, walked tree by tree in Python. ROC-AUC {mt['test_roc_auc']:.2f} on the held-out customers.\n"
             f"- Different from the hackathon build: that one used tree ensembles (random forest, XGBoost) on ten features and an LLM "
             f"for the notes; this one uses scikit-learn gradient boosting on {len(F)} features and fixed rules.")

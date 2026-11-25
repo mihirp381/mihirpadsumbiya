@@ -59,7 +59,7 @@ check("population.json covers the model's features", [f["key"] for f in pop["fea
 check("population.json rows = training split", pop["meta"]["rows"] == m["meta"]["split"]["train"],
       f"{pop['meta']['rows']} of {m['meta']['split']['train']}")
 k = next(i for i, s in enumerate(samples) if s["churn"] == 1 and s["p"] >= 0.3)
-check("default customer matches Figure 4", k == 2 and core.pct(samples[k]["p"]) == "63.1%", f"Customer {chr(65 + k)} at {core.pct(samples[k]['p'])}")
+check("default customer matches Figure 3", k == 2 and core.pct(samples[k]["p"]) == "63.1%", f"Customer {chr(65 + k)} at {core.pct(samples[k]['p'])}")
 check("threshold rows at every slider step", all(core.threshold_row(m, round(0.02 * i, 2)) for i in range(1, 50)))
 
 sys.exit(1 if failed else 0)

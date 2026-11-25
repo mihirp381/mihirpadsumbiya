@@ -12,7 +12,7 @@ layout: default
 {%- assign words = "zero,one,two,three,four,five,six,seven,eight,nine,ten" | split: "," -%}
 {%- assign next_i = i | plus: 1 -%}
 <header class="titleblock">
-  <p class="label titleblock-label">Figure {{ ex.figure }} · Laboratory</p>
+  <p class="label titleblock-label">Figure {{ ex.figure }} · Project demos</p>
   <h1 class="title">{% include title.html heading=ex.title em=ex.title_em %}</h1>
   <p class="standfirst">{{ page.standfirst }}</p>
   <p class="titleblock-note"><span class="label">{{ ex.metric_kicker | default: "This model, held out" }}</span><span class="metric">{{ ex.metric }}</span><span class="metric-label">{{ ex.metric_label }}</span></p>
@@ -41,8 +41,8 @@ layout: default
   </ul>
 </section>
 
-<nav class="sect row pager" aria-label="Exhibits">
-  <p class="margin label">Other exhibits</p>
+<nav class="sect row pager" aria-label="Other demos">
+  <p class="margin label">Other demos</p>
   <ol class="body leaders">
     {%- if i > 0 %}
     {%- assign p = list[prev_i] %}
@@ -52,6 +52,6 @@ layout: default
     {%- assign n = list[next_i] %}
     <li class="leader"><span class="leader-l"><span class="label pager-dir">Next</span><a href="{{ '/lab/' | append: n.slug | append: '/' | relative_url }}" rel="next">{{ n.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">Figure {{ n.figure }}</span></li>
     {%- endif %}
-    <li class="leader"><span class="leader-l"><span class="label pager-dir">Index</span><a href="{{ '/lab/' | relative_url }}">All {{ words[list.size] | default: list.size }} exhibits</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">2</span></li>
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Index</span><a href="{{ '/lab/' | relative_url }}">All {{ words[list.size] | default: list.size }} demos</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">2</span></li>
   </ol>
 </nav>

@@ -23,11 +23,11 @@ Run every command from the repo root with `python -I` (isolated mode). The data 
 | `train_crack.py` | Trains the CNN on `mps`, writes checkpoints, split and `train_log.json` to `crack-run/` |
 | `export_crack.py` | Quantises, evaluates, writes `assets/models/crack-cnn.{bin,json}`, `assets/img/crack/s01..s12.jpg`, `fixtures/crack_parity.json` |
 | `build_bcrp.py` | `assets/models/bcrp.json` |
-| `churnguard_stats.py` | `assets/apps/churnguard/population.json`: percentiles and box-plot statistics of the churn training split, for the Figure 6 app |
+| `churnguard_stats.py` | `assets/apps/churnguard/population.json`: percentiles and box-plot statistics of the churn training split, for the Figure 5 app |
 | `parity.mjs` | Node check that the JS libraries match Python; exits non-zero on failure |
 | `hero_check.mjs` | Gradient check and convergence check for the hero network in `assets/js/lib/mlp.js` |
-| `demo_check.mjs` | Checks the pure logic behind the Lab figures against the shipped model files |
-| `churnguard_check.py` | Standard-library check that the Figure 6 app's Python tree walker matches `churn.json` and `gbm.js` to 1e-9 and writes five notes per customer |
+| `demo_check.mjs` | Checks the pure logic behind the project demos against the shipped model files |
+| `churnguard_check.py` | Standard-library check that the Figure 5 app's Python tree walker matches `churn.json` and `gbm.js` to 1e-9 and writes five notes per customer |
 
 ## Reproduce
 

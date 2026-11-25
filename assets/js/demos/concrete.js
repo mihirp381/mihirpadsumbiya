@@ -170,7 +170,7 @@ export async function mount(fig, hooks = {}) {
 
   const hp = meta.hyperparameters, mt = meta.metrics;
   fig.querySelector(".fig-cap").innerHTML =
-    `<span class="fig-num">Figure 2.</span>Gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) trained on ${fmt(meta.split.train)} lab mixes and tested once on ${fmt(meta.split.test)} held-out mixes: ` +
+    `<span class="fig-num">Figure 1.</span>Gradient-boosted trees (${fmt(meta.trees)} trees, depth ${hp.max_depth}) trained on ${fmt(meta.split.train)} lab mixes and tested once on ${fmt(meta.split.test)} held-out mixes: ` +
     `R² ${fmt(mt.test_r2, 2)}, RMSE ${fmt(mt.test_rmse, 1)} MPa. In my manuscript the best of thirty models, a neural network, reached R² 0.93 and RMSE 4.9 MPa on its own split. ` +
     `Data: Yeh (1998), UCI Machine Learning Repository, CC BY 4.0. Reproduce with <a href="${REPO}" target="_blank" rel="noopener">tools/train_concrete.py</a>.`;
 

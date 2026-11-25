@@ -6,13 +6,19 @@ folio: 5
 label: Notes
 heading: Occasional notes
 heading_em: Occasional
-standfirst: Short pieces of writing about the work, newest first.
-description: Notes by Mihir Padsumbiya on data science and the models on this site.
+standfirst: Personal views, general technical topics, and life in general.
+description: "Notes by Mihir Padsumbiya: personal views, technical topics and life in general."
 ---
 <section class="sect row" aria-labelledby="rss-h">
   <h2 class="margin label" id="rss-h">Subscribe</h2>
   <p class="body">New notes can be followed with any feed reader through the <a href="{{ '/notes/feed.xml' | relative_url }}">RSS feed</a>.</p>
 </section>
+{%- if site.posts.size == 0 %}
+<section class="sect row" aria-labelledby="none-h">
+  <h2 class="margin label" id="none-h">Archive</h2>
+  <p class="body empty">No notes yet.</p>
+</section>
+{%- endif %}
 {%- assign years = site.posts | group_by_exp: "p", "p.date | date: '%Y'" %}
 {%- for y in years %}
 <section class="sect row" aria-labelledby="y{{ y.name }}">

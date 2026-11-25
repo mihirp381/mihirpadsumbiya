@@ -7,7 +7,7 @@
   links:
     - label: DOI 10.22115/SCCE.2022.325596.1397
       url: https://doi.org/10.22115/scce.2022.325596.1397
-    - label: "Run it: Figure 3"
+    - label: "Run it: Figure 2"
       url: /lab/crack-detection/
     - label: PDF and repo
       url: https://github.com/mihirp381/Automatic-crack-detection-using-CNN-
@@ -16,7 +16,7 @@
   byline: Manuscript, with V. Brahmbhatt and S. P. Thakkar, Nirma University, 2021
   text: Thirty model variants compared on 1,030 lab mixes, from linear regression to stacked ensembles and neural networks; the best network reached R² 0.93.
   links:
-    - label: "Run it: Figure 2"
+    - label: "Run it: Figure 1"
       url: /lab/concrete-strength/
     - label: Manuscript
       url: https://github.com/mihirp381/Compressive-strength-prediction-for-concrete-using-various-ML-techniques

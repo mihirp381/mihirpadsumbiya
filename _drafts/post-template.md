@@ -4,7 +4,7 @@ summary: One or two sentences. They appear on the notes index, in the RSS feed a
 tags: [example, template]
 ---
 
-The opening paragraph. It gets the drop cap. Link to another page with the relative_url filter, for example the [Laboratory]({{ '/lab/' | relative_url }}), or to another note with [post_url]({{ site.baseurl }}{% post_url 2026-11-24-three-models-and-no-server %}).
+The opening paragraph. It gets the drop cap. Link to another page with the relative_url filter, for example the [project demos]({{ '/lab/' | relative_url }}). Link to another note with the post_url tag and the note's file name without the extension, as described in the README.
 
 <!--more-->
 

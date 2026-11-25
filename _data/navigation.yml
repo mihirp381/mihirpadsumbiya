@@ -1,8 +1,8 @@
-- title: Laboratory
+- title: Project demos
   url: /lab/
   section: lab
   folio: 2
-  blurb: Three trained models, a dataset and a Streamlit app, all running in your browser.
+  blurb: Five projects you can try in your browser.
 - title: Experience
   url: /work/
   section: work
@@ -17,7 +17,7 @@
   url: /notes/
   section: notes
   folio: 5
-  blurb: Short pieces of writing, newest first.
+  blurb: Personal views, general technical topics, and life in general.
 - title: About
   url: /about/
   section: about

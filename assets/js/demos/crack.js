@@ -146,7 +146,7 @@ export async function mount(fig, hooks = {}) {
   const caption = () => {
     const sp = M.split;
     fig.querySelector(".fig-cap").innerHTML =
-      `<span class="fig-num">Figure 3.</span>The four-layer CNN from my 2022 paper (${fmt(M.params)} parameters), retrained in PyTorch on the same ${fmt(sp.train + sp.val + sp.test)} images with the same split sizes and hyperparameters: ` +
+      `<span class="fig-num">Figure 2.</span>The four-layer CNN from my 2022 paper (${fmt(M.params)} parameters), retrained in PyTorch on the same ${fmt(sp.train + sp.val + sp.test)} images with the same split sizes and hyperparameters: ` +
       `${pct(M.metrics_shipped.accuracy)} accuracy on ${fmt(M.metrics_shipped.n)} held-out images (the paper reported 97.8%). ${q8} of the weights are stored as 8-bit integers (${mb} MB) and the forward pass is hand-written JavaScript${engine.inWorker ? " running in a Web Worker" : ""}. ` +
       `Images: Özgenel (2019), Mendeley Data, CC BY 4.0. Paper: <a href="${DOI}" target="_blank" rel="noopener">doi:10.22115/SCCE.2022.325596.1397</a>.`;
   };

@@ -1,6 +1,6 @@
 - slug: concrete-strength
   demo: concrete
-  figure: 2
+  figure: 1
   title: Concrete strength
   title_em: strength
   description: Gradient-boosted trees predict a mix’s compressive strength from seven ingredients and its age.
@@ -14,7 +14,7 @@
 
 - slug: crack-detection
   demo: crack
-  figure: 3
+  figure: 2
   title: Crack detection
   title_em: detection
   description: The CNN from my 2022 paper classifies photos of concrete as cracked or intact.
@@ -28,7 +28,7 @@
 
 - slug: customer-churn
   demo: churn
-  figure: 4
+  figure: 3
   title: Customer churn
   title_em: churn
   description: A compact refit of ChurnGuard scores a bank customer’s risk of leaving.
@@ -39,12 +39,12 @@
       url: https://github.com/mihirp381/ChurnGuard
     - label: Training script
       url: https://github.com/mihirp381/mihirpadsumbiya/blob/main/tools/train_churn.py
-    - label: "The Streamlit app: Figure 6"
+    - label: "The Streamlit app: Figure 5"
       url: /lab/churnguard-app/
 
 - slug: drug-transporters
   demo: bcrp
-  figure: 5
+  figure: 4
   title: Drug–transporter mining
   title_em: mining
   description: Search the compounds my datathon pipeline labelled as BCRP inhibitors or substrates.
@@ -56,11 +56,11 @@
 
 - slug: churnguard-app
   demo: churnguard
-  figure: 6
+  figure: 5
   title: ChurnGuard, the app
   title_em: app
   description: The ChurnGuard Streamlit app itself, running on Python in your browser.
-  caption: "The ChurnGuard Streamlit app, running in this tab on Python compiled to WebAssembly. It scores with the same 250 trees as Figure 4, walked in Python, and writes its notes with fixed rules where the hackathon build used an LLM."
+  caption: "The ChurnGuard Streamlit app, running in this tab on Python compiled to WebAssembly. It scores with the same 250 trees as Figure 3, walked in Python, and writes its notes with fixed rules where the hackathon build used an LLM."
   metric: 1st
   metric_kicker: The original
   metric_label: place, UTD FinHack 2024
