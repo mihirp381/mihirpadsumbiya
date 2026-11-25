@@ -1,0 +1,46 @@
+{%- assign v = site.time | date: '%s' -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- capture nl %}
+{% endcapture -%}
+{%- capture seo_out %}{% seo %}{% endcapture -%}
+{%- if page.summary %}
+{%- assign seo_lines = seo_out | split: nl -%}
+{%- for line in seo_lines %}
+{%- unless line contains 'description" content=' or line contains 'application/ld+json' or line contains '"@context":"https://schema.org"' %}
+{{ line }}
+{%- endunless %}
+{%- endfor %}
+{%- assign desc = page.summary | strip_html | normalize_whitespace | escape %}
+<meta name="description" content="{{ desc }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="twitter:description" content="{{ desc }}">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":{{ page.title | jsonify }},"description":{{ page.summary | strip_html | normalize_whitespace | jsonify }},"datePublished":{{ page.date | date_to_xmlschema | jsonify }},"url":{{ page.url | absolute_url | jsonify }},"mainEntityOfPage":{"@type":"WebPage","@id":{{ page.url | absolute_url | jsonify }}},"author":{"@type":"Person","name":{{ site.author | jsonify }},"url":{{ '/' | absolute_url | jsonify }}}}</script>
+{%- else %}
+{{ seo_out }}
+{%- endif %}
+{% feed_meta %}
+<meta name="theme-color" content="#eeeade">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+<script>
+(() => {
+  const d = document.documentElement;
+  let t = new URLSearchParams(location.search).get("theme");
+  if (t !== "light" && t !== "dark") { try { t = localStorage.getItem("theme"); } catch (e) {} }
+  if (t !== "light" && t !== "dark") t = "light";
+  d.dataset.theme = t;
+  d.classList.add("js");
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400..600;1,400..600&family=Jost:wght@500;600&display=swap">
+<link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ v }}">
+<script type="module" src="{{ '/assets/js/site.js' | relative_url }}?v={{ v }}"></script>
+{%- if page.hero %}
+<script type="module" src="{{ '/assets/js/hero.js' | relative_url }}?v={{ v }}"></script>
+{%- endif %}
+{%- if page.layout == 'exhibit' %}
+<script type="module" src="{{ '/assets/js/lab.js' | relative_url }}?v={{ v }}"></script>
+{%- endif %}

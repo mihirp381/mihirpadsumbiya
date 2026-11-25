@@ -1,0 +1,9 @@
+{%- assign h = include.heading | default: page.heading | default: page.title | escape -%}
+{%- assign em = include.em | default: page.heading_em -%}
+{%- if em -%}
+{%- assign em = em | escape -%}
+{%- capture emh %}<em>{{ em }}</em>{% endcapture -%}
+{{ h | replace_first: em, emh }}
+{%- else -%}
+{{ h }}
+{%- endif -%}

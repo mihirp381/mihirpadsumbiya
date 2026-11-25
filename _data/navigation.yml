@@ -1,0 +1,25 @@
+- title: Project demos
+  url: /lab/
+  section: lab
+  folio: 2
+  blurb: Five projects you can try in your browser.
+- title: Experience
+  url: /work/
+  section: work
+  folio: 3
+  blurb: Six employers, two degrees, certifications and skills.
+- title: Research
+  url: /research/
+  section: research
+  folio: 4
+  blurb: A peer-reviewed paper, two manuscripts and eight projects.
+- title: Notes
+  url: /notes/
+  section: notes
+  folio: 5
+  blurb: Personal views, general technical topics, and life in general.
+- title: About
+  url: /about/
+  section: about
+  folio: 6
+  blurb: A short biography, two recommendations and how to reach me.

@@ -1,0 +1,122 @@
+---
+layout: null
+sitemap: false
+---
+{%- assign v = site.time | date: '%s' -%}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ChurnGuard · Mihir Padsumbiya</title>
+<link rel="icon" href="../../../favicon.svg" type="image/svg+xml">
+<style>
+:root { --paper: #eeeade; --ink: #17150f; --ink-2: #47433a; --ox: #7b1e2b; color-scheme: light; }
+:root[data-theme="dark"] { --paper: #14120e; --ink: #ebe5d6; --ink-2: #beb7a5; --ox: #e08a7e; color-scheme: dark; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); }
+.status { margin: 0; padding: 1.25rem 1rem; max-width: 40rem; font: 400 14px/1.6 "Courier Prime", "Courier New", monospace; }
+.status[data-state="error"] { color: var(--ink); }
+.status a { color: var(--ink); text-underline-offset: 0.18em; }
+.status a:hover { color: var(--ox); }
+#root:not(.ready) { visibility: hidden; }
+#root .Toastify { display: none; }
+#root [data-testid="stHeader"] { display: none; }
+#root [data-testid="stMainBlockContainer"] { padding-top: 2rem; padding-bottom: 3rem; }
+#root [data-testid="stElementToolbar"] { display: none; }
+#root :is(h1, h2, h3, h4) { word-break: normal; overflow-wrap: normal; hyphens: manual; }
+#root .st-key-cg-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { min-width: 0; }
+@media (min-width: 760px) and (max-width: 1099.98px) {
+  #root .st-key-cg-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:nth-child(1) { flex: 0 0 15rem; width: 15rem; }
+  #root .st-key-cg-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:nth-child(2) { flex: 1 1 0; width: auto; }
+  #root .st-key-cg-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:nth-child(3) { flex: 1 0 100%; width: 100%; }
+}
+@media (max-width: 759.98px) {
+  #root .st-key-cg-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { flex: 1 0 100%; width: 100%; }
+}
+</style>
+<script>
+(() => {
+  const t = new URLSearchParams(location.search).get("theme");
+  document.documentElement.dataset.theme = t === "dark" ? "dark" : "light";
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400..600;1,400..600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.3/build/stlite.css">
+</head>
+<body>
+<p class="status" id="status" role="status">Fetching the Python runtime from cdn.jsdelivr.net.</p>
+<noscript><p class="status">This app runs Python in your browser and needs JavaScript. The source is on <a href="https://github.com/mihirp381/mihirpadsumbiya/tree/main/assets/apps/churnguard">GitHub</a>.</p></noscript>
+<div id="root"></div>
+<script type="module">
+const SRC = "https://github.com/mihirp381/mihirpadsumbiya/tree/main/assets/apps/churnguard";
+const status = document.getElementById("status");
+const root = document.getElementById("root");
+const fail = (what) => {
+  status.dataset.state = "error";
+  const a = Object.assign(document.createElement("a"), { href: SRC, target: "_blank", rel: "noopener", textContent: "Python source on GitHub" });
+  status.replaceChildren(`${what} The app cannot start without it. Reload to try again, or read the `, a, ".");
+  root.hidden = true;
+};
+const dark = document.documentElement.dataset.theme === "dark";
+const ink = dark
+  ? { paper: "#14120e", paper2: "#1d1a15", ink: "#ebe5d6", hair: "#4a453a", ox: "#e08a7e", blue: "#9db9df" }
+  : { paper: "#eeeade", paper2: "#e5e0d1", ink: "#17150f", hair: "#b5ae9c", ox: "#7b1e2b", blue: "#1b365d" };
+const base = new URL("../../../assets/", location.href);
+const at = (p) => ({ url: new URL(`${p}?v={{ v }}`, base).href });
+
+let stlite;
+try {
+  stlite = await import("https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.3/build/stlite.js");
+} catch (e) {
+  console.warn(e);
+  fail("The Python runtime could not be fetched from cdn.jsdelivr.net.");
+}
+if (stlite) {
+  status.textContent = "Starting Python and Streamlit in this tab. This takes a few seconds.";
+  const slow = setTimeout(() => { status.dataset.slow = ""; status.textContent = "Still starting. On a slow connection this can take a minute or two."; }, 30000);
+  new MutationObserver((_, obs) => {
+    const toasts = root.querySelectorAll(".Toastify__toast");
+    const t = toasts.length ? toasts[toasts.length - 1].textContent.trim() : "";
+    if (t && !status.dataset.slow) status.textContent = `Starting Python and Streamlit in this tab: ${t[0].toLowerCase()}${t.slice(1)}`;
+    if (root.querySelector('h1, [data-testid="stException"]')) { root.classList.add("ready"); status.hidden = true; clearTimeout(slow); obs.disconnect(); }
+    else if (root.textContent.includes("Error during booting up")) {
+      clearTimeout(slow); obs.disconnect();
+      fail("Part of the Python runtime could not be fetched from cdn.jsdelivr.net, pypi.org or files.pythonhosted.org.");
+    }
+  }).observe(root, { childList: true, subtree: true, characterData: true });
+  stlite.mount({
+    entrypoint: "apps/churnguard/app.py",
+    files: {
+      "apps/churnguard/app.py": at("apps/churnguard/app.py"),
+      "apps/churnguard/core.py": at("apps/churnguard/core.py"),
+      "apps/churnguard/population.json": at("apps/churnguard/population.json"),
+      "models/churn.json": at("models/churn.json"),
+    },
+    requirements: [],
+    streamlitConfig: {
+      "browser.gatherUsageStats": false,
+      "client.toolbarMode": "minimal",
+      "client.disableDataExport": true,
+      "theme.base": dark ? "dark" : "light",
+      "theme.primaryColor": ink.ox,
+      "theme.backgroundColor": ink.paper,
+      "theme.secondaryBackgroundColor": ink.paper2,
+      "theme.textColor": ink.ink,
+      "theme.borderColor": ink.hair,
+      "theme.linkColor": ink.ox,
+      "theme.showWidgetBorder": true,
+      "theme.baseRadius": "none",
+      "theme.buttonRadius": "none",
+      "theme.font": "EB Garamond, Garamond, Georgia, serif",
+      "theme.headingFont": "Bodoni Moda, Bodoni 72, Didot, serif",
+      "theme.codeFont": "Courier Prime, Courier New, monospace",
+      "theme.baseFontSize": 17,
+    },
+  }, root);
+}
+</script>
+</body>
+</html>

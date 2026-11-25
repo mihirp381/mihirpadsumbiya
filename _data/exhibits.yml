@@ -1,0 +1,80 @@
+- slug: concrete-strength
+  demo: concrete
+  figure: 1
+  title: Concrete strength
+  title_em: strength
+  description: Gradient-boosted trees predict a mix’s compressive strength from seven ingredients and its age.
+  metric: "0.94"
+  metric_label: R² on 201 held-out mixes
+  sources:
+    - label: Manuscript
+      url: https://github.com/mihirp381/Compressive-strength-prediction-for-concrete-using-various-ML-techniques
+    - label: Training script
+      url: https://github.com/mihirp381/mihirpadsumbiya/blob/main/tools/train_concrete.py
+
+- slug: crack-detection
+  demo: crack
+  figure: 2
+  title: Crack detection
+  title_em: detection
+  description: The CNN from my 2022 paper classifies photos of concrete as cracked or intact.
+  metric: "98.8%"
+  metric_label: accuracy on 4,000 held-out images
+  sources:
+    - label: DOI 10.22115/SCCE.2022.325596.1397
+      url: https://doi.org/10.22115/scce.2022.325596.1397
+    - label: PDF and repo
+      url: https://github.com/mihirp381/Automatic-crack-detection-using-CNN-
+
+- slug: customer-churn
+  demo: churn
+  figure: 3
+  title: Customer churn
+  title_em: churn
+  description: A compact refit of ChurnGuard scores a bank customer’s risk of leaving.
+  metric: "0.82"
+  metric_label: ROC-AUC on 4,882 held-out customers
+  sources:
+    - label: ChurnGuard on GitHub
+      url: https://github.com/mihirp381/ChurnGuard
+    - label: Training script
+      url: https://github.com/mihirp381/mihirpadsumbiya/blob/main/tools/train_churn.py
+    - label: "The Streamlit app: Figure 5"
+      url: /lab/churnguard-app/
+
+- slug: drug-transporters
+  demo: bcrp
+  figure: 4
+  title: Drug–transporter mining
+  title_em: mining
+  description: Search the compounds my datathon pipeline labelled as BCRP inhibitors or substrates.
+  metric: "8,094"
+  metric_label: compounds mined from 11,788 papers
+  sources:
+    - label: Pipeline on GitHub
+      url: https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing
+
+- slug: churnguard-app
+  demo: churnguard
+  figure: 5
+  title: ChurnGuard, the app
+  title_em: app
+  description: The ChurnGuard Streamlit app itself, running on Python in your browser.
+  caption: "The ChurnGuard Streamlit app, running in this tab on Python compiled to WebAssembly. It scores with the same 250 trees as Figure 3, walked in Python, and writes its notes with fixed rules where the hackathon build used an LLM."
+  metric: 1st
+  metric_kicker: The original
+  metric_label: place, UTD FinHack 2024
+  loading: Loading
+  noscript: This figure runs a Streamlit app in your browser and needs JavaScript. The Python source is linked below.
+  links:
+    - label: Open the app on its own page
+      url: /lab/churnguard-app/app/
+    - label: Python source
+      url: https://github.com/mihirp381/mihirpadsumbiya/tree/main/assets/apps/churnguard
+  sources:
+    - label: ChurnGuard on GitHub
+      url: https://github.com/mihirp381/ChurnGuard
+    - label: The app source
+      url: https://github.com/mihirp381/mihirpadsumbiya/tree/main/assets/apps/churnguard
+    - label: stlite
+      url: https://github.com/whitphx/stlite

@@ -1,0 +1,8 @@
+- group: Machine learning & statistics
+  items: [A/B testing, Causal inference, Experimental design, Statistical modeling, Predictive modeling, Time-series forecasting, XGBoost, scikit-learn, pandas, NumPy, MLOps, ML evaluation systems]
+- group: AI & NLP engineering
+  items: [PyTorch, Agentic orchestration (LangChain), RAG, Snowflake Cortex, LLM fine-tuning, pgvector, LLMOps, Agent evals]
+- group: Data engineering & cloud
+  items: [AWS, Snowflake, Apache Spark, dbt, ETL/ELT architecture, Power BI]
+- group: Programming & deployment
+  items: [Python, SQL (PostgreSQL), R, SAS, asyncio, FastAPI, Docker, Streamlit, Git]

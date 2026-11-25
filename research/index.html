@@ -1,0 +1,59 @@
+---
+layout: page
+title: Research
+section: research
+folio: 4
+label: Research
+heading: Research & projects
+heading_em: "&"
+standfirst: Projects I’ve made public.
+description: A peer-reviewed paper on crack detection, two manuscripts, and eight competition and course projects by Mihir Padsumbiya.
+---
+<section class="sect row" aria-labelledby="papers-h">
+  <h2 class="margin label" id="papers-h">Papers</h2>
+  <ol class="body papers">
+    {%- for p in site.data.publications %}
+    <li class="paper">
+      <span class="paper-n date">[{{ forloop.index }}]</span>
+      <h3 class="paper-title">{{ p.title }}</h3>
+      {%- if p.authors %}
+      <p class="paper-by">{{ p.authors }}. <cite>{{ p.venue }}</cite> {{ p.issue }}. <span class="label paper-status">{{ p.status }}</span></p>
+      {%- else %}
+      <p class="paper-by">{{ p.byline }}.</p>
+      {%- endif %}
+      <p class="paper-text">{{ p.text }}</p>
+      <ul class="linklist">
+        {%- for l in p.links %}
+        <li><a href="{% if l.url contains '://' %}{{ l.url }}{% else %}{{ l.url | relative_url }}{% endif %}">{{ l.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </li>
+    {%- endfor %}
+  </ol>
+</section>
+
+<section class="sect row" aria-labelledby="proj-h">
+  <h2 class="margin label" id="proj-h">Competitions and projects</h2>
+  <ol class="body projects">
+    {%- for p in site.data.projects %}
+    <li class="project">
+      <h3 class="project-title">{{ p.title }}</h3>
+      {%- if p.award %}
+      <p class="project-award">{{ p.award }}</p>
+      {%- endif %}
+      <p class="project-text">{{ p.text }}</p>
+      <p class="project-tech date">{{ p.tech }}</p>
+      {%- if p.links %}
+      <ul class="linklist">
+        {%- for l in p.links %}
+        <li><a href="{% if l.url contains '://' %}{{ l.url }}{% else %}{{ l.url | relative_url }}{% endif %}">{{ l.label }}</a></li>
+        {%- endfor %}
+      </ul>
+      {%- else %}
+      <p class="project-note">{{ p.note }}</p>
+      {%- endif %}
+    </li>
+    {%- endfor %}
+  </ol>
+  <p class="body more"><a href="{{ site.data.contact.github }}">All repositories on GitHub</a></p>
+</section>

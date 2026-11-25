@@ -1,0 +1,57 @@
+---
+layout: default
+---
+{%- assign list = site.data.exhibits -%}
+{%- for e in list -%}
+{%- if e.slug == page.exhibit -%}
+{%- assign ex = e -%}
+{%- assign i = forloop.index0 -%}
+{%- endif -%}
+{%- endfor -%}
+{%- assign prev_i = i | minus: 1 -%}
+{%- assign words = "zero,one,two,three,four,five,six,seven,eight,nine,ten" | split: "," -%}
+{%- assign next_i = i | plus: 1 -%}
+<header class="titleblock">
+  <p class="label titleblock-label">Figure {{ ex.figure }} · Project demos</p>
+  <h1 class="title">{% include title.html heading=ex.title em=ex.title_em %}</h1>
+  <p class="standfirst">{{ page.standfirst }}</p>
+  <p class="titleblock-note"><span class="label">{{ ex.metric_kicker | default: "This model, held out" }}</span><span class="metric">{{ ex.metric }}</span><span class="metric-label">{{ ex.metric_label }}</span></p>
+</header>
+
+<figure class="fig" data-demo="{{ ex.demo }}">
+  <div class="fig-body"><p class="fig-loading">{{ ex.loading | default: "Loading model" }}</p><noscript><p class="fig-noscript">{{ ex.noscript | default: "This figure runs a model in your browser and needs JavaScript." }}</p></noscript></div>
+  {%- if ex.links %}
+  <ul class="fig-links linklist">
+    {%- for l in ex.links %}
+    <li><a href="{% if l.url contains '://' %}{{ l.url }}{% else %}{{ l.url | relative_url }}{% endif %}">{{ l.label }}</a></li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+  <figcaption class="fig-cap"><span class="fig-num">Figure {{ ex.figure }}.</span>{{ ex.caption | default: ex.description }}</figcaption>
+</figure>
+
+{{ content }}
+
+<section class="sect row" aria-labelledby="sources-h">
+  <h2 class="margin label" id="sources-h">Sources</h2>
+  <ul class="body linklist">
+    {%- for s in ex.sources %}
+    <li><a href="{% if s.url contains '://' %}{{ s.url }}{% else %}{{ s.url | relative_url }}{% endif %}">{{ s.label }}</a></li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<nav class="sect row pager" aria-label="Other demos">
+  <p class="margin label">Other demos</p>
+  <ol class="body leaders">
+    {%- if i > 0 %}
+    {%- assign p = list[prev_i] %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Previous</span><a href="{{ '/lab/' | append: p.slug | append: '/' | relative_url }}" rel="prev">{{ p.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">Figure {{ p.figure }}</span></li>
+    {%- endif %}
+    {%- if next_i < list.size %}
+    {%- assign n = list[next_i] %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Next</span><a href="{{ '/lab/' | append: n.slug | append: '/' | relative_url }}" rel="next">{{ n.title }}</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">Figure {{ n.figure }}</span></li>
+    {%- endif %}
+    <li class="leader"><span class="leader-l"><span class="label pager-dir">Index</span><a href="{{ '/lab/' | relative_url }}">All {{ words[list.size] | default: list.size }} demos</a></span><span class="dots" aria-hidden="true"></span><span class="leader-r folio-num">2</span></li>
+  </ol>
+</nav>

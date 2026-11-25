@@ -1,0 +1,93 @@
+---
+layout: page
+title: Experience
+section: work
+folio: 3
+label: Experience
+heading: Experience & education
+heading_em: "&"
+standfirst: Where I have worked, what I studied, and the tools I use.
+description: Mihir Padsumbiya’s experience, education, certifications, leadership and skills.
+---
+<section class="sect jobs" aria-labelledby="exp-h">
+  <h2 class="sr" id="exp-h">Experience</h2>
+  {%- for j in site.data.experience %}
+  <article class="job row">
+    <p class="margin date">{{ j.dates }}</p>
+    <div class="body">
+      <h3 class="job-org">{{ j.org }}{% if j.ticker %} <span class="ticker">{{ j.ticker }}</span>{% endif %}</h3>
+      <p class="job-role">{{ j.role }}{% if j.place %}<span class="sep" aria-hidden="true">,</span> <span class="job-place">{{ j.place }}</span>{% endif %}</p>
+      {%- if j.points %}
+      <ul class="runin">
+        {%- for p in j.points %}
+        <li>{% if p.tag %}<span class="runin-head">{{ p.tag }}</span> {% endif %}{{ p.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+  </article>
+  {%- endfor %}
+</section>
+
+<section class="sect row" aria-labelledby="edu-h">
+  <h2 class="margin label" id="edu-h">Education</h2>
+  <div class="body">
+    {%- for s in site.data.education %}
+    <div class="school">
+      <h3 class="school-name">{{ s.school }}</h3>
+      <p class="school-degree">{{ s.degree }}</p>
+      <p class="date">{{ s.dates }}</p>
+      <dl class="kv-list">
+        {%- for d in s.details %}
+        <div><dt>{{ d.label }}</dt><dd>{{ d.value }}</dd></div>
+        {%- endfor %}
+      </dl>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="sect row" aria-labelledby="cert-h">
+  <h2 class="margin label" id="cert-h">Certifications</h2>
+  <ul class="body leaders ledger">
+    {%- for c in site.data.certifications %}
+    <li class="leader">
+      <span class="leader-l"><span class="ledger-name">{% if c.url %}<a href="{{ c.url }}">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}</span><span class="leader-ctx">{{ c.issuer }}</span></span>
+      <span class="dots" aria-hidden="true"></span>
+      <span class="leader-r date">{{ c.date }}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+
+<section class="sect row" aria-labelledby="lead-h">
+  <h2 class="margin label" id="lead-h">Leadership</h2>
+  <div class="body">
+    {%- for l in site.data.leadership %}
+    <div class="lead">
+      <h3 class="lead-role">{{ l.role }}</h3>
+      <p class="date">{{ l.dates }}</p>
+      <p>{{ l.text }}</p>
+    </div>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="sect row" aria-labelledby="skills-h">
+  <h2 class="margin label" id="skills-h">Skills</h2>
+  <dl class="body skills">
+    {%- for g in site.data.skills %}
+    <div class="skill-group">
+      <dt class="label">{{ g.group }}</dt>
+      <dd>{{ g.items | join: ", " }}</dd>
+    </div>
+    {%- endfor %}
+  </dl>
+</section>
+
+<section class="sect row" aria-labelledby="cv-h">
+  <h2 class="margin label" id="cv-h">Résumé</h2>
+  <div class="body">
+    <p><a class="btn btn-ghost" href="{{ site.data.contact.resume | relative_url }}">Résumé (PDF)</a></p>
+  </div>
+</section>

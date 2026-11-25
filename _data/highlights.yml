@@ -1,0 +1,10 @@
+- label: Impact of contributions
+  figure: "$5M+"
+- label: Forecast error, MAPE
+  figure: "16% → 7%"
+- label: Lab reports processed
+  context: by an agentic OCR and classification system
+  figure: "100K+"
+- label: Hackathons won
+  context: first place at the Lantern Pharma Datathon and UTD FinHack 2024
+  figure: "2"

@@ -1,610 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>Mihir Padsumbiya | Data Scientist & ML Engineer</title>
-  <meta name="description" content="Portfolio of Mihir Padsumbiya — Data Scientist, Machine Learning Engineer, and Cloud Analytics professional." />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Icons (original kept for scrolly/scrollex compatibility) -->
-  <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-
-  <!-- Custom Premium CSS (replaces base styling) -->
-  <link rel="stylesheet" href="assets/css/custom.css" />
-
-  <!-- Keep noscript fallback -->
-  <noscript><style>section.main.inactive{opacity:1;transform:none}</style></noscript>
-</head>
-<body class="is-preload">
-
-<!-- ============================================================
-     WRAPPER
-     ============================================================ -->
-<div id="wrapper">
-
-  <!-- ========== HEADER / HERO ========== -->
-  <header id="header" class="alt">
-    <span class="logo"><img src="images/Memoji.jpeg" alt="Mihir Padsumbiya" /></span>
-
-    <h1><span class="grad">Mihir</span> Padsumbiya</h1>
-
-    <!-- ChatGPT-style streaming subtitle -->
-    <div class="gpt-bubble">
-      <div class="gpt-icon">✦</div>
-      <span id="typing-text"></span>
-    </div>
-    <p>
-      Connect &nbsp;
-      <a href="https://www.linkedin.com/in/mihir-padsumbiya/" target="_blank" rel="noopener">@LinkedIn</a>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <a href="mailto:padsumbiyamihir@gmail.com">@Email</a>
+---
+layout: default
+hero: true
+folio: 1
+running_title: Data Scientist
+---
+<section class="opening" aria-labelledby="home-title">
+  <div class="opening-text">
+    <p class="label">Data Scientist · Republic Services</p>
+    <h1 class="tagline" id="home-title">Engineering <em>business&#8209;centric</em> AI and data products.</h1>
+    <p class="lede">I build forecasting, causal-ML and agentic-AI systems that field operations run on. Before that, NLP and generative AI for drug discovery. Published author, and twice a hackathon winner.</p>
+    <p class="actions">
+      <a class="btn" href="{{ '/lab/' | relative_url }}">See the project demos</a>
+      <a class="btn btn-ghost" href="{{ site.data.contact.resume | relative_url }}">Résumé (PDF)</a>
     </p>
+  </div>
 
-    <!-- Quick stats -->
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <span class="num">3.94</span>
-        <span class="label">MS GPA</span>
+  <figure class="fig hero-fig" id="fig-0">
+    <div class="plate plate-crop">
+      <span class="crops" aria-hidden="true"></span>
+      <div class="plot-frame">
+        <div class="plot" data-hero-plot>
+          <canvas class="plot-canvas" role="img" aria-label="Scatter plot of two classes of points with the decision boundary of a neural network trained on them."></canvas>
+          <noscript><p class="plot-noscript">This figure trains a neural network in your browser and needs JavaScript.</p></noscript>
+        </div>
       </div>
-      <div class="hero-stat">
-        <span class="num">4+</span>
-        <span class="label">Roles</span>
+      <div class="hud" data-hero-hud hidden>
+        <div class="readout"><span class="readout-label">step</span><span class="readout-val" data-hud="step">0</span></div>
+        <div class="readout"><span class="readout-label">loss</span><span class="readout-val" data-hud="loss">–</span></div>
+        <div class="readout"><span class="readout-label">acc</span><span class="readout-val"><span data-hud="acc">–</span><span class="readout-unit">%</span></span></div>
+        <div class="readout hud-status"><span class="readout-label">status</span><span class="status" data-hud="status" aria-live="polite">ready</span></div>
+        <div class="readout hud-spark"><span class="readout-label">loss, log</span><svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none" aria-hidden="true"><path data-hud="spark"/></svg></div>
       </div>
-      <div class="hero-stat">
-        <span class="num">3</span>
-        <span class="label">Hackathons</span>
-      </div>
-      <div class="hero-stat">
-        <span class="num">3+</span>
-        <span class="label">Certifications</span>
+      <div class="fig-controls" data-hero-controls hidden>
+        <div class="seg" role="group" aria-label="Dataset" data-hero-datasets>
+          <button type="button" data-set="spiral" aria-pressed="true">spiral</button>
+          <button type="button" data-set="moons" aria-pressed="false">moons</button>
+          <button type="button" data-set="rings" aria-pressed="false">rings</button>
+          <button type="button" data-set="xor" aria-pressed="false">xor</button>
+        </div>
+        <div class="ctl-group">
+          <span class="ctl-label" id="add-as">add points as</span>
+          <div class="seg" role="group" aria-labelledby="add-as" data-hero-class>
+            <button type="button" data-class="0" aria-pressed="true"><svg class="mk mk-ci" viewBox="0 0 10 10" aria-hidden="true"><circle cx="5" cy="5" r="5"/></svg>class 0</button>
+            <button type="button" data-class="1" aria-pressed="false"><svg class="mk mk-sq" viewBox="0 0 10 10" aria-hidden="true"><rect x="0.5" y="0.5" width="9" height="9"/></svg>class 1</button>
+          </div>
+        </div>
+        <label class="range" data-hero-speed-wrap>
+          <span class="range-label">speed</span>
+          <input type="range" min="0" max="4" step="1" value="1" data-hero-speed>
+          <output class="range-val" data-hero-speed-val>1×</output>
+        </label>
+        <div class="ctl-buttons">
+          <button class="btn btn-ghost btn-sm" type="button" data-hero-pause aria-label="Pause training"><span class="when-run">Pause</span><span class="when-paused">Resume</span></button>
+          <button class="btn btn-ghost btn-sm" type="button" data-hero-retrain aria-label="Retrain from a new random seed">Retrain</button>
+        </div>
       </div>
     </div>
+    <figcaption class="fig-cap"><span data-hero-cap>A small neural network that learns a decision boundary in your browser.</span><span class="fig-hint" data-hero-hint hidden>Click the plot to add data.</span></figcaption>
+  </figure>
+</section>
 
-    <!-- Scroll cue -->
-    <div class="scroll-hint">
-      <span></span>
-    </div>
-  </header>
-
-  <!-- ========== NAVIGATION ========== -->
-  <nav id="nav">
-    <ul>
-      <li><a href="#intro"              class="active">About</a></li>
-      <li><a href="#showcase"                         >Skills</a></li>
-      <li><a href="#certifications"                   >Certifications</a></li>
-      <li><a href="#first"                            >Education</a></li>
-      <li><a href="#work-experience"                  >Experience</a></li>
-      <li><a href="#hackathon-experience"             >Hackathons</a></li>
-      <li><a href="#project-experience"               >Projects</a></li>
-      <li><a href="#responsibilities"                 >Leadership</a></li>
-      <li><a href="MIHIR_PADSUMBIYA_DSI.pdf" download >Resume</a></li>
+<section class="sect row" aria-labelledby="hl-h">
+  <h2 class="margin label" id="hl-h">Highlights</h2>
+  <div class="body">
+    <ul class="leaders highlights">
+      {%- for h in site.data.highlights %}
+      <li class="leader">
+        <span class="leader-l"><span class="hl-label">{{ h.label }}</span>{% if h.context %}<span class="leader-ctx">{{ h.context }}</span>{% endif %}</span>
+        <span class="dots" aria-hidden="true"></span>
+        <span class="leader-r hl-fig">{{ h.figure }}</span>
+      </li>
+      {%- endfor %}
     </ul>
-  </nav>
+  </div>
+</section>
 
-  <!-- ========== MAIN CONTENT ========== -->
-  <div id="main">
+<section class="sect row" aria-labelledby="latest-h">
+  <h2 class="margin label" id="latest-h">Latest notes</h2>
+  <div class="body">
+    {%- if site.posts.size > 0 %}
+    <ol class="notelist">
+      {%- for post in site.posts limit: 3 %}
+      <li class="note-item">
+        <time class="date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+        <h3 class="note-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="note-sum">{{ post.summary }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+    <p class="more"><a href="{{ '/notes/' | relative_url }}">All notes</a></p>
+    {%- else %}
+    <p class="empty">No notes yet.</p>
+    {%- endif %}
+  </div>
+</section>
 
-    <!-- ---- ABOUT / INTRO ---- -->
-    <section id="intro" class="main">
-      <div class="spotlight">
-        <div class="content">
-          <header class="major">
-            <h2>My Journey</h2>
-          </header>
-          <p>
-            Greetings! I'm <strong style="color:#f0f4ff">Mihir Harjivan Padsumbiya</strong>, a creative Data Scientist with a
-            Master's Degree in Business Analytics specialising in Data Science and Machine Learning.
-            With a robust background in engineering and finance, I bring a unique blend of analytical rigour and
-            interdisciplinary expertise to the table.
-          </p>
-          <p>
-            My journey into data science has been marked by a relentless pursuit of knowledge and a commitment to excellence.
-            I have honed my skills in data analysis, machine learning, and statistical modelling through hands-on experience and
-            academic training. Projects integrating machine learning with civil engineering and finance have not only showcased
-            my ability to tackle complex problems but also underscored my knack for driving innovative solutions.
-          </p>
-          <p>
-            Throughout my career, I have demonstrated a keen ability to extract meaningful insights from data and translate them
-            into actionable strategies. I firmly believe the ultimate goal of data science is to solve business problems — which
-            is why I prioritise clearly communicating insights using storytelling techniques tailored to stakeholders' needs.
-          </p>
-          <p>
-            Beyond technical skills, I am committed to fostering a culture of collaboration and continuous learning. Whether
-            mentoring aspiring data scientists or participating in hackathons, I am dedicated to making a positive impact and
-            driving meaningful change within organisations.
-          </p>
-        </div>
-        <span class="image">
-          <img src="images/Mihir Padsumbiya.png" alt="Mihir Padsumbiya" />
-        </span>
-      </div>
-    </section>
+<section class="sect row" aria-labelledby="pq-h">
+  <h2 class="margin label" id="pq-h">In others’ words</h2>
+  <div class="body">
+    {%- assign rec = site.data.recommendations | first %}
+    {% include pullquote.html rec=rec %}
+  </div>
+</section>
 
-    <!-- ---- SKILLS ---- -->
-    <section id="showcase" class="main special">
-      <header class="major"><h2>Skills &amp; Tools</h2></header>
-      <div class="content">
-        <div class="row">
-
-          <!-- Programming -->
-          <div class="item">
-            <div class="skill-card">
-              <h3 class="title-s">Programming</h3>
-              <ul class="invisible-table">
-                <li><strong>Languages:</strong>         <span>Python, R, SAS, SQL</span></li>
-                <li><strong>Databases &amp; Formats:</strong> <span>SQLite, PostgreSQL, JSON</span></li>
-                <li><strong>Agile / PM:</strong>        <span>JIRA, Atlassian, Git, BitBucket</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Tools -->
-          <div class="item">
-            <div class="skill-card">
-              <h3 class="title-s">Tools &amp; Platforms</h3>
-              <ul class="invisible-table">
-                <li><strong>Cloud:</strong>         <span>Microsoft Azure, Snowflake, AWS, Code Ocean</span></li>
-                <li><strong>BI &amp; Viz:</strong>  <span>Power BI, Tableau, Python Libraries, Alteryx</span></li>
-                <li><strong>Automation:</strong>    <span>Selenium, BeautifulSoup</span></li>
-                <li><strong>IDEs:</strong>           <span>Jupyter, PyCharm, VS Code, RStudio, IntelliJ</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- ML / Analytics -->
-          <div class="item">
-            <div class="skill-card">
-              <h3 class="title-s">Machine Learning</h3>
-              <div class="skill-tags">
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">Keras</span>
-                <span class="skill-tag">Scikit-Learn</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Regression</span>
-                <span class="skill-tag">Classification</span>
-                <span class="skill-tag">Ensemble Methods</span>
-                <span class="skill-tag">Clustering</span>
-                <span class="skill-tag">Dimensionality Reduction</span>
-                <span class="skill-tag">Anomaly Detection</span>
-                <span class="skill-tag">Deep Learning</span>
-                <span class="skill-tag">Feature Engineering</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Domains -->
-          <div class="item">
-            <div class="skill-card">
-              <h3 class="title-s">Domains</h3>
-              <div class="skill-tags">
-                <span class="skill-tag">Data Science</span>
-                <span class="skill-tag">Data Analytics</span>
-                <span class="skill-tag">Econometric Modelling</span>
-                <span class="skill-tag">MLOps</span>
-                <span class="skill-tag">NLP</span>
-                <span class="skill-tag">Computer Vision</span>
-                <span class="skill-tag">Business Communication</span>
-                <span class="skill-tag">Problem Solving</span>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- .row -->
-      </div>
-    </section>
-
-    <!-- ---- CERTIFICATIONS ---- -->
-    <section id="certifications" class="main special">
-      <header class="major"><h2>Certifications &amp; Publications</h2></header>
-      <div class="certification-grid">
-
-        <a class="certification-item" href="https://learn.microsoft.com/api/credentials/share/en-us/PadsumbiyaMihirHarjivan-0703/842D9494DA65726D?sharingId=31CE2240E5E29761" target="_blank" rel="noopener">
-          <img src="images/Azure_logo.png" alt="Microsoft Azure Logo" class="certification-logo" />
-          <div class="certification-info">
-            <h3>Microsoft Azure AI Fundamentals</h3>
-            <p>Issuing Organization: Microsoft</p>
-            <p>Date Earned: March 3, 2024</p>
-          </div>
-        </a>
-
-        <a class="certification-item" href="https://achieve.snowflake.com/5f40dd61-1747-4dda-8c23-7c7cde882ddc" target="_blank" rel="noopener">
-          <img src="images/snowflake_logo.png" alt="Snowflake Logo" class="certification-logo" />
-          <div class="certification-info">
-            <h3>Snowflake Core Certification</h3>
-            <p>Issuing Organization: Snowflake</p>
-            <p>Date Earned: May 06, 2024</p>
-          </div>
-        </a>
-
-        <a class="certification-item" href="https://www.credly.com/badges/a7cf94be-3603-4317-ab99-604eba9ce7e2/public_url" target="_blank" rel="noopener">
-          <img src="images/alteryx_logo.png" alt="Alteryx Logo" class="certification-logo" />
-          <div class="certification-info">
-            <h3>Alteryx Designer Core</h3>
-            <p>Issuing Organization: Alteryx</p>
-            <p>Date Earned: January 15, 2023</p>
-          </div>
-        </a>
-
-        <a class="certification-item" href="https://doi.org/10.22115/scce.2022.325596.1397" target="_blank" rel="noopener">
-          <img src="images/jsoft.jpeg" alt="Journal of Soft Computing Logo" class="certification-logo" />
-          <div class="certification-info">
-            <h3>Automatic Crack Detection Using CNN</h3>
-            <p>Journal of Soft Computing in Civil Engineering</p>
-            <p>Published: July 2022</p>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- ---- EDUCATION ---- -->
-    <section id="first" class="main special">
-      <header class="major"><h2>Education</h2></header>
-      <ul class="features">
-
-        <li>
-          <img src="images/Nirma_University_Logo.png" alt="Nirma University Logo" class="university-logo" />
-          <div class="education-info">
-            <h3>Nirma University</h3>
-            <h4>Bachelor of Technology</h4>
-            <h4>Major: Civil Engineering</h4>
-            <h4>Specialisation: Finance</h4>
-            <h4>Passed with Distinction</h4>
-            <h4>GPA: 3.4 / 4.0</h4>
-          </div>
-        </li>
-
-        <li>
-          <img src="images/UTD.png" alt="University of Texas at Dallas Logo" class="university-logo" />
-          <div class="education-info">
-            <h3>The University of Texas at Dallas</h3>
-            <h4>Master of Science</h4>
-            <h4>Major: Business Analytics</h4>
-            <h4>Specialisation: Machine Learning</h4>
-            <h4>Scholar with Highest Distinction</h4>
-            <h4>GPA: 3.94 / 4.0</h4>
-          </div>
-        </li>
-
-      </ul>
-    </section>
-
-    <!-- ---- WORK EXPERIENCE ---- -->
-    <section id="work-experience" class="main special">
-      <header class="major"><h2>Work Experience</h2></header>
-      <div class="experience-container">
-
-        <div class="experience-item">
-          <div class="logo"><img src="images/conagra-brands.png" alt="Conagra Brands Logo" /></div>
-          <div class="details">
-            <h3>Conagra Brands</h3>
-            <h4>Student Consultant: Data Analyst</h4>
-            <p>January 2023 – May 2023</p>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="logo"><img src="images/energybox.png" alt="Energybox Logo" /></div>
-          <div class="details">
-            <h3>Energybox Inc.</h3>
-            <h4>Data Analyst Intern</h4>
-            <p>May 2023 – August 2023</p>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="logo"><img src="images/UTD.png" alt="UTD Logo" /></div>
-          <div class="details">
-            <h3>Univ. of Texas at Dallas</h3>
-            <h4>Teaching Assistant: Advanced Statistics</h4>
-            <p>August 2023 – December 2023</p>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="logo"><img src="images/Lantern_Pharma_Logo.jpg" alt="Lantern Pharma Logo" /></div>
-          <div class="details">
-            <h3>Lantern Pharma&nbsp;<small style="font-size:0.65em;opacity:0.6">(NASDAQ: LTRN)</small></h3>
-            <h4>Data Scientist &amp; Platform Developer</h4>
-            <p>Jan 2024 – Oct 2024</p>
-          </div>
-        </div>
-
-        <div class="experience-item">
-          <div class="logo"><img src="images/Republic_Services_logo.png" alt="Republic Services Logo" /></div>
-          <div class="details">
-            <h3>Republic Services Inc.</h3>
-            <h4>Data Scientist</h4>
-            <p>Oct 2024 – Present</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ---- HACKATHONS ---- -->
-    <section id="hackathon-experience" class="main special">
-      <header class="major"><h2>Hackathon Experience</h2></header>
-      <div class="hackathon-container">
-
-        <div class="hackathon-item">
-          <div class="hackathon-logo">
-            <img src="images/Crescent_Bank.webp" alt="Crescent Bank" />
-          </div>
-          <div class="hackathon-details">
-            <h3>Crescent Bank</h3>
-            <h4>Tech: SQL, Python, Power BI, Excel</h4>
-            <p>Predicting recovery rates on default / non-performing loans</p>
-            <span class="achievement-badge silver">Semi-Finalist</span>
-            <a href="https://github.com/mihirp381/Crescent-bank" class="github-link" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
-        <div class="hackathon-item">
-          <div class="hackathon-logo">
-            <img src="images/HP.png" alt="HP Logo" />
-          </div>
-          <div class="hackathon-details">
-            <h3>HP</h3>
-            <h4>Tech: Python, Alteryx, Tableau</h4>
-            <p>Optimum digital marketing budget allocation</p>
-            <span class="achievement-badge participation">Participation</span>
-            <a href="https://github.com/mihirp381/HPE_Business_Analytics" class="github-link" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
-        <div class="hackathon-item">
-          <div class="hackathon-logo">
-            <img src="images/Lantern_Pharma_Logo.jpg" alt="Lantern Pharma" />
-          </div>
-          <div class="hackathon-details">
-            <h3>Lantern Pharma</h3>
-            <h4>Tech: Python, Hugging Face Transformers</h4>
-            <p>Automatic drug extraction from research articles using NLP</p>
-            <span class="achievement-badge gold">🏆 First Position</span>
-            <a href="https://github.com/mihirp381/Drug-Extraction-using-Natural-Language-Processing" class="github-link" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ---- PROJECTS ---- -->
-    <section id="project-experience" class="main special">
-      <header class="major"><h2>Projects</h2></header>
-      <div class="project-container">
-
-        <div class="project-item">
-          <div class="project-logo">
-            <img src="images/Mental_Health.jpeg" alt="Mental Health Project" />
-          </div>
-          <div class="project-details">
-            <h3>Mental Health Prediction in Teenagers</h3>
-            <h4>Tech: R, Tableau, Python</h4>
-            <a href="https://github.com/mihirp381/Mental_Health_Intervention" class="github-link" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-logo">
-            <img src="images/Telecom_Churn.jpeg" alt="Telecom Churn Project" />
-          </div>
-          <div class="project-details">
-            <h3>Telecom Customer Churn Prediction</h3>
-            <h4>Tech: R, Power BI, Python</h4>
-            <a href="https://github.com/mihirp381/Telecom_Customer_Churn" class="github-link" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-logo">
-            <img src="images/Retail.webp" alt="Retail Database Project" />
-          </div>
-          <div class="project-details">
-            <h3>Retail Chain Database Design</h3>
-            <h4>Tech: Oracle SQL</h4>
-            <a href="https://github.com/mihirp381/Retail_Database" class="github-link" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
-      </div>
-      <ul class="actions">
-        <li><a href="https://github.com/mihirp381" class="button" target="_blank" rel="noopener">View All Projects on GitHub →</a></li>
-      </ul>
-    </section>
-
-    <!-- ---- LEADERSHIP / RESPONSIBILITIES ---- -->
-    <section id="responsibilities" class="main special">
-      <header class="major"><h2>Positions of Responsibility</h2></header>
-      <div class="responsibilities-container">
-
-        <div class="responsibility-item">
-          <div class="hackathon-logo">
-            <img src="images/RCNI.jpeg" alt="Rotaract Club Logo" />
-          </div>
-          <div class="responsibility-details">
-            <h3>Vice-President</h3>
-            <h4>June 2019 – October 2020</h4>
-            <ul>
-              <li><p>Led and coordinated with an organisation of over 300 students to organise blood donation camps, educational workshops, seminars, national-level events, and commercial concerts for the "India Literacy Mission".</p></li>
-              <li><p>Collaborated with 500+ national firms for sponsorships, managing a budget of $50,000+ and drafting 100+ MOUs.</p></li>
-              <li><p>Developed new programmes for incoming students with 52 board members; conducted orientations for 200+ students.</p></li>
-              <li><p>Represented the organisation at 4+ national and international Rotary conferences.</p></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="responsibility-item">
-          <div class="hackathon-logo">
-            <img src="images/BALC.png" alt="BALC Logo" />
-          </div>
-          <div class="responsibility-details">
-            <h3>Student Mentor</h3>
-            <h4>November 2022 – December 2023</h4>
-            <ul>
-              <li><p>Provided guidance and support to four incoming students at UTD, aiding them in navigating college life and making the most of their initial days at university.</p></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ---- RECOMMENDATIONS ---- -->
-    <section id="recommendations" class="main special">
-      <header class="major"><h2>Recommendations</h2></header>
-      <div class="recommendations-container">
-
-        <div class="recommendation-item">
-          <div class="recommendation-image">
-            <img src="images/Beau_Cover.jpeg" alt="Beau Mahadev" />
-            <div>
-              <strong style="font-size:0.9rem;color:#f0f4ff">Beau Mahadev</strong><br/>
-              <span style="font-size:0.75rem;color:#8892a4">Direct Supervisor · Energybox</span>
-            </div>
-          </div>
-          <div class="recommendation-details">
-            <blockquote>
-              <p>"I had the pleasure to be Mihir's direct supervisor during his Energybox summer internship. Despite only being with us 4 months, Mihir provided a tremendous amount of value. He quickly understood his assigned tasks and took ownership to complete them with minimal hand holding. He demonstrated both strong technical skills and great communication skills. In addition to completing all assigned work he also took initiative to solve other problems, such as creating a Python script to automatically extract data from PDFs, saving many hours of company time on data entry. Any Data science team would be lucky to have Mihir."</p>
-            </blockquote>
-          </div>
-        </div>
-
-        <div class="recommendation-item">
-          <div class="recommendation-image">
-            <img src="images/Ike_Cover.jpeg" alt="Ike Nwabah" />
-            <div>
-              <strong style="font-size:0.9rem;color:#f0f4ff">Ike Nwabah</strong><br/>
-              <span style="font-size:0.75rem;color:#8892a4">Professor · University of Texas at Dallas</span>
-            </div>
-          </div>
-          <div class="recommendation-details">
-            <blockquote>
-              <p>"I had the opportunity to teach Mihir at UTD in my Professional Development class. Mihir was a model student: always on time, attentive, and very engaged. Mihir stood out from some of his peers in the way he took the course very seriously. He sought ways constantly sharpen himself and his skills. Mihir is dynamic, smart, and self-aware. I have full confidence that he will excel at any organisation he joins."</p>
-            </blockquote>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </div><!-- /#main -->
-
-  <!-- ========== FOOTER ========== -->
-  <section id="my-footer">
-    <div class="footer-container">
-
-      <div class="contact-section">
-        <h3>Get in Touch</h3>
-        <p>padsumbiyamihir@gmail.com</p>
-        <ul class="social-media-icons">
-          <li>
-            <a href="https://github.com/mihirp381" target="_blank" rel="noopener" aria-label="GitHub">
-              <img src="images/github.png" alt="GitHub" />
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/mihir-padsumbiya/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <img src="images/linkedin.png" alt="LinkedIn" />
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="download-section">
-        <a class="resume-download-link" href="MIHIR_PADSUMBIYA_DSI.pdf" download>
-          ↓ &nbsp; Download Resume
-        </a>
-      </div>
-
-    </div>
-    <p style="text-align:center;margin-top:2.5rem;font-size:0.75rem;color:#4a5568;">
-      © 2024 Mihir Padsumbiya · Built with passion &amp; data
-    </p>
-  </section>
-
-</div><!-- /#wrapper -->
-
-<!-- ========== SCRIPTS ========== -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-
-<script>
-/* ---- ChatGPT-style streaming animation ---- */
-const phrases = [
-  "Data Science · Machine Learning · Cloud Analytics",
-  "Turning raw data into actionable business decisions",
-  "MS Business Analytics · UTD · Scholar with Highest Distinction"
-];
-
-let phraseIndex = 0;
-const typingEl = document.getElementById("typing-text");
-
-// Inject blinking block cursor
-const cursor = document.createElement('span');
-cursor.className = 'gpt-cursor';
-typingEl.parentNode.appendChild(cursor);
-
-function streamPhrase() {
-  const tokens = phrases[phraseIndex].split(' ');
-  let tokenIdx = 0;
-  let built = '';
-
-  // clear previous text
-  typingEl.textContent = '';
-
-  function emitToken() {
-    if (tokenIdx < tokens.length) {
-      built += (tokenIdx === 0 ? '' : ' ') + tokens[tokenIdx];
-      typingEl.textContent = built;
-      tokenIdx++;
-      // fast token speed — mimics LLM streaming
-      setTimeout(emitToken, 55 + Math.random() * 40);
-    } else {
-      // Phrase fully rendered — pause, then fade out and next phrase
-      setTimeout(() => {
-        typingEl.style.transition = 'opacity 0.35s ease';
-        typingEl.style.opacity = '0';
-        cursor.style.opacity = '0';
-        setTimeout(() => {
-          phraseIndex = (phraseIndex + 1) % phrases.length;
-          typingEl.style.opacity = '1';
-          cursor.style.opacity = '1';
-          streamPhrase();
-        }, 380);
-      }, 2800);
-    }
-  }
-
-  emitToken();
-}
-
-streamPhrase();
-
-/* ---- Skill bar fill on intersection ---- */
-const fillBars = () => {
-  document.querySelectorAll('.skill-bar-fill[data-width]').forEach(bar => {
-    bar.style.width = bar.dataset.width;
-  });
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) fillBars(); });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('#showcase').forEach(el => observer.observe(el));
-</script>
-
-</body>
-</html>
+<section class="sect row" aria-labelledby="toc-h">
+  <h2 class="margin label" id="toc-h">Contents</h2>
+  <div class="body">
+    {% include contents.html %}
+  </div>
+</section>

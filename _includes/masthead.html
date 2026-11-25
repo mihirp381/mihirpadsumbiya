@@ -1,0 +1,18 @@
+<header class="masthead{% if page.hero %} masthead-tall{% endif %}">
+  <div class="wrap">
+    <div class="mast-band">
+      <a class="wordmark" href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Mihir Padsumbiya</a>
+      <p class="dateline">Data Science &amp; Applied AI · Plano, Texas</p>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        {%- for item in site.data.navigation %}
+        <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% elsif page.section == item.section %} aria-current="true"{% endif %}>{{ item.title }}</a></li>
+        {%- endfor %}
+        <li class="nav-aux"><a href="{{ site.data.contact.resume | relative_url }}">Résumé</a></li>
+        <li class="nav-aux nav-theme"><button type="button" class="theme-toggle" aria-pressed="false"><span class="sr">Switch to </span><span class="t-night">Night</span><span class="t-day">Day</span></button></li>
+      </ul>
+    </nav>
+    <div class="scotch" aria-hidden="true"></div>
+  </div>
+</header>
